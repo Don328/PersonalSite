@@ -1,6 +1,24 @@
 ﻿@page "/"
 
 <PageTitle>Donavan Olsen</PageTitle>
+<MarkdownView FromUrl="/markdown/welcome.md" />
+<div class="col">
+    <div class="row">
+        <div class="col" style="width:100%">
+            For information about how this site is built and hosted, click the <code>about</code> link in the upper right corner of the window.
+            <i class="fa-solid fa-hand-point-up fa-rotate-by" style="color:var(--primaryGray);margin-left:.5em;--fa-rotate-angle:45deg;color:var(--primaryGreenDark);"></i>
+        </div>
 
-    <MarkdownView FromUrl="/markdown/welcome.md"/>
+    </div>
+</div>
 
+@code {
+    [CascadingParameter] public IModalService Modal { get; set; }
+
+    private ModalOptions modalOptions = new()
+        {
+            Position = ModalPosition.TopLeft,
+            Animation = ModalAnimation.FadeInOut(1.5),
+            HideHeader = true
+        };
+}

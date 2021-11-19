@@ -45,19 +45,19 @@ a, .btn-link {
         border-color: var(--primaryGrayDark);
     }
 
-.nav-link {
+.nav-item {
     color: var(--primaryGreen);
     background-color: transparent;
     border-color: var(--primaryGrayDark);
 }
 
-    .nav-link:hover {
+    .nav-item:hover {
         color: var(--primaryGreenDark);
         background-color: transparent;
         border-color: var(--primaryGrayDark);
     }
 
-    .nav-link:active {
+    .nav-item:active {
         color: var(--primaryGreen);
         background-color: var(--primaryGreenDark);
         border-color: var(--primaryGrayDark);
@@ -65,6 +65,26 @@ a, .btn-link {
 
 .content {
     padding-top: 1.1rem;
+}
+
+.collapsible {
+    background-color: transparent;
+    color: var(--primaryGreenDark);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+}
+
+.collapsible-content:disabled {
+    display: none;
+    overflow: hidden;
+}
+
+.collapsible-content:enabled {
+    display:flex;
 }
 
 .valid.modified:not([type=checkbox]) {

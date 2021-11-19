@@ -1,7 +1,41 @@
 ﻿@page "/about-me"
 
-<h3>AboutMe</h3>
+<PageTitle>AboutMe</PageTitle>
+<h1>About Me</h1>
+    <MarkdownView FromUrl="/markdown/about-me/about-me.md" />
+<hr />
+<div class="container">
+    <MarkdownView FromUrl="/markdown/about-me/interests.md" />
+</div>
+<div class="container">
+    <hr />
+    <h2>Stories</h2>
+    @if (selectedStory.Key == SelectedStory.FE)
+    {
+        <hr />
+        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.FE, "/markdown/about-me/stories/fe.md"); })"><h3>Flight Engineer</h3></button>
+        <div class="collapsible-content">
+            <MarkdownView FromUrl="/markdown/about-me/stories/fe.md" />
+        </div>
+        <hr />
+    }
+    else
+    {
+        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.FE, "/markdown/about-me/stories/fe.md"); })"><h3>Flight Engineer</h3></button>
+    }
 
-@code {
 
-}
+    @if (selectedStory.Key == SelectedStory.ProSe)
+    {
+        <hr />
+        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.ProSe, "/markdown/about-me/stories/pro-se.md"); })"><h3>Pro Se</h3></button>
+        <div class="collapsible-content">
+            <MarkdownView FromUrl="/markdown/about-me/stories/pro-se.md" />
+        </div>
+        <hr />
+    }
+    else
+    {
+        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.ProSe, "/markdown/about-me/stories/pro-se.md"); })"><h3>Pro Se</h3></button>
+    }
+</div>
