@@ -1,5 +1,14 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+:root {
+    --primaryGray: #595959;
+    --primaryGrayDark: #333333;
+    --primaryGrayLight: #C8C8C8;
+    --primaryGreen: #AAE17A;
+    --primaryGreenDark: #6F9B4A;
+    --primaryBlue: #0077cc;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -9,14 +18,50 @@ h1:focus {
 }
 
 a, .btn-link {
-    color: #0077cc;
+    color: var(--primaryBlue);
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    color: var(--primaryGreen);
+    background-color: var(--primaryGray);
+    border-color: var(--primaryGrayDark);
 }
+
+    .btn-primary:hover {
+        color: var(--primaryGreenDark);
+        background-color: transparent;
+        border-color: var(--primaryGrayDark);
+    }
+
+    .btn-primary:active {
+        color: var(--primaryGreen);
+        background-color: var(--primaryGreenDark);
+        border-color: var(--primaryGrayDark);
+    }
+
+    .btn-primary:focus {
+        color: var(--primaryGreen);
+        background-color: var(--primaryGreenDark);
+        border-color: var(--primaryGrayDark);
+    }
+
+.nav-link {
+    color: var(--primaryGreen);
+    background-color: transparent;
+    border-color: var(--primaryGrayDark);
+}
+
+    .nav-link:hover {
+        color: var(--primaryGreenDark);
+        background-color: transparent;
+        border-color: var(--primaryGrayDark);
+    }
+
+    .nav-link:active {
+        color: var(--primaryGreen);
+        background-color: var(--primaryGreenDark);
+        border-color: var(--primaryGrayDark);
+    }
 
 .content {
     padding-top: 1.1rem;
