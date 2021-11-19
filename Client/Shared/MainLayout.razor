@@ -7,7 +7,7 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <button @onclick="@(() => Modal.Show<About>("About this website", modalOptions))" class="badge small btn-primary">About</button>
         </div>
 
         <article class="content px-4">
@@ -15,3 +15,16 @@
         </article>
     </main>
 </div>
+
+@code {
+    [CascadingParameter] public IModalService Modal { get; set; }
+
+    private ModalOptions modalOptions = new()
+        {
+            Position = ModalPosition.TopLeft,
+            Animation = ModalAnimation.FadeInOut(1.5),
+            HideHeader = true
+    };
+
+
+}
