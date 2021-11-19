@@ -1,6 +1,7 @@
 ﻿namespace BlazorApp.Client.Utils.Constants
 {
-    public class ModalTypes
+    public static class ModalTypes
     {
+        public const string About = "about";
     }
 }
