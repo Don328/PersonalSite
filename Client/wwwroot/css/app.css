@@ -127,3 +127,14 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.modal-defalut {
+    color:var(--primaryGrayDark);
+}
+
+    .modal-default .accent-text {
+        color:var(--primaryGreenDark);
+        background-color:whitesmoke;
+        padding:.5em;
+        float:right;
+    }
