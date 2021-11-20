@@ -14,6 +14,8 @@ namespace BlazorApp.Client.Utils
                     return new ModalOptions();
                 case ModalTypes.Default:
                     return Default();
+                case ModalTypes.Scrollable:
+                    return Scrollable();
             }
 
         }
@@ -25,6 +27,17 @@ namespace BlazorApp.Client.Utils
                 Position = ModalPosition.Center,
                 Animation = ModalAnimation.FadeInOut(1),
                 HideHeader = true,
+            };
+            return opts;
+        }
+
+        private static ModalOptions Scrollable()
+        {
+            var opts = new ModalOptions()
+            {
+                Position = ModalPosition.Center,
+                Animation = ModalAnimation.FadeInOut(1),
+                ContentScrollable = true,
             };
             return opts;
         }

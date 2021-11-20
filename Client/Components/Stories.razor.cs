@@ -12,6 +12,7 @@ namespace BlazorApp.Client.Components
         {
             FE,
             ProSe,
+            Fifty3Pilots,
             None
         }
 
@@ -21,14 +22,8 @@ namespace BlazorApp.Client.Components
         private KeyValuePair<StoryName, string> SelectedStory
         { get; set; } = new(StoryName.None, string.Empty);
 
-        private ModalOptions ModalOpts
-        {
-            get
-            {
-                return ModalOptionsFactory
-                    .GetOptions(ModalTypes.Default);
-            }
-        }
+        private ModalOptions? Options { get; set; }
+            = new ModalOptions();
 
         private async Task OnStorySelected(StoryName story)
         {
@@ -39,9 +34,9 @@ namespace BlazorApp.Client.Components
                 story, SelectedStory.Value);
             
             StateHasChanged();
-            
 
-            Modal?.Show<LifeStory>(story.ToString(), parameters:modalParams, options:ModalOpts);
+            
+            Modal?.Show<LifeStory>("", parameters:modalParams, options:Options);
         }
 
         private async Task GetStoryPath(StoryName story)
@@ -49,18 +44,41 @@ namespace BlazorApp.Client.Components
             var pathRoot = "/markdown/about-me/stories/";
             switch (story)
             {
+                case StoryName.Fifty3Pilots:
+                    Options = await GetOpts(ModalTypes.Scrollable);
+                    SelectedStory = new(story, pathRoot + "fifty3pilots.md");
+                    break;
                 case StoryName.FE:
+                    Options = await GetOpts(ModalTypes.Default);
                     SelectedStory = new(story, pathRoot + "fe.md");
                     break;
                 case StoryName.ProSe:
+                    Options = await GetOpts(ModalTypes.Default);
                     SelectedStory = new(story, pathRoot + "pro-se.md");
                     break;
                 default:
+                    Options = await GetOpts(ModalTypes.Default);
                     SelectedStory = new(StoryName.None, String.Empty);
                     break;
             }
              
             await Task.CompletedTask;
+        }
+
+        private async Task<ModalOptions> GetOpts(ModalTypes modalType)
+        {
+            switch (modalType)
+            {
+                case ModalTypes.Default:
+                    return ModalOptionsFactory
+                        .GetOptions(ModalTypes.Default);
+                case ModalTypes.Scrollable:
+                    return ModalOptionsFactory
+                        .GetOptions(ModalTypes.Scrollable);
+                default:
+                    return await Task
+                        .FromResult(new ModalOptions());
+            }
         }
 
         private async Task<ModalParameters> GetParams()

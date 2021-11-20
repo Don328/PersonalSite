@@ -3,5 +3,6 @@
     public enum ModalTypes
     {
         Default,
+        Scrollable,
     }
 }

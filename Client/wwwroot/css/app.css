@@ -7,6 +7,7 @@
     --primaryGreen: #AAE17A;
     --primaryGreenDark: #6F9B4A;
     --primaryBlue: #0077cc;
+    --primaryBlueLight: #4E9AC6
 }
 
 html, body {
@@ -128,8 +129,22 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
-.modal-defalut {
-    color:var(--primaryGrayDark);
+.modal-default {
+    background-color:var(--primaryGrayDark);
+    color:whitesmoke;
+    float:none;
+    padding:5em;
+    font-size:18pt;
+    word-wrap:break-word;
+    outline-color:transparent;
+    max-width:1500px;
+    border:5px;
+    border-collapse:collapse;
+    border-block-width:0;
+    
+}
+.modal.modal-default, h1 {
+    color: var(--primaryBlueLight);
 }
 
     .modal-default .accent-text {
@@ -138,3 +153,4 @@ a, .btn-link {
         padding:.5em;
         float:right;
     }
+

@@ -1,0 +1,8 @@
+﻿.card {
+    background-color:var(--primaryGrayLight);
+    color: var(--primaryGrayDark);
+}
+
+.card .btn {
+    color:var(--primaryBlueLight);
+}

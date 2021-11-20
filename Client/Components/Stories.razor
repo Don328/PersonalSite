@@ -1,17 +1,18 @@
 ﻿<div class="card">
-    <div class="row">
+    <div class="row" style="padding:1em;">
         <div class="col-2">
-            <button type="button" class="collapsible" @onclick="@((e) => { OnStorySelected(StoryName.FE).GetAwaiter().GetResult(); })"><h4>FE</h4></button>
+            <button class="btn navbar-brand" @onclick="@((e) => { OnStorySelected(StoryName.Fifty3Pilots).GetAwaiter().GetResult(); })"><h4>53 Pilots</h4></button>
         </div>
-        <div class="col" style="width:100%; float:right;">
-            <MarkdownView FromUrl="/markdown/about-me/stories/tldr/fe_tldr.md" />
+        <div class="col" style="width:100%; float:right;padding:1em;">
+            <MarkdownView FromUrl="/markdown/about-me/stories/tldr/fifty3pilots_tldr.md" />
         </div>
-    </div>    
-    <div class="row">
+    </div>
+    <hr />
+    <div class="row" style="padding:1em;">
         <div class="col-2">
-            <button type="button" class="collapsible" @onclick="@((e) => { OnStorySelected(StoryName.ProSe).GetAwaiter().GetResult(); })"><h3>Pro Se</h3></button>
+            <button class="btn navbar-brand" @onclick="@((e) => { OnStorySelected(StoryName.ProSe).GetAwaiter().GetResult(); })"><h4>Pro Se</h4></button>
         </div>
-        <div class="col" style="width:100%; float:right;">
+        <div class="col" style="width:100%; float:right;padding:1em;">
             <MarkdownView FromUrl="/markdown/about-me/stories/tldr/pro-se_tldr.md" />
         </div>
     </div>

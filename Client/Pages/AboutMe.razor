@@ -23,6 +23,7 @@
     @if (SelectedSection == Section.Stories)
     {
         <button type="button" class="collapsible" @onclick="@((e) => { SelectedSection = Section.None; })"><h2>Life Stories</h2></button>
+        <p>Select a title to view the full story.</p>
         <div class="collapsible-content">
             <Stories/>
         </div>
