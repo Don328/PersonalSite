@@ -6,14 +6,14 @@
     <div class="row">
         <div class="col" style="width:100%">
             For information about how this site is built and hosted, click the <code>about</code> link in the upper right corner of the window.
-            <i class="fa-solid fa-hand-point-up fa-rotate-by" style="--fa-rotate-angle:45deg;color:var(--primaryGray);margin-left:.5em;color:var(--primaryGreenDark);"></i>
+            <i class="fa-solid fa-2xl fa-hand-point-up fa-rotate-by" style="--fa-rotate-angle:45deg;color:var(--primaryGray);margin-left:.5em;color:var(--primaryGreenDark);"></i>
         </div>
 
     </div>
 </div>
 
 @code {
-    [CascadingParameter] public IModalService Modal { get; set; }
+    [CascadingParameter] public IModalService? Modal { get; set; }
 
     private ModalOptions modalOptions = new()
         {

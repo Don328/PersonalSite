@@ -2,40 +2,33 @@
 
 <PageTitle>AboutMe</PageTitle>
 <h1>About Me</h1>
-    <MarkdownView FromUrl="/markdown/about-me/about-me.md" />
+<MarkdownView FromUrl="/markdown/about-me/about-me.md" />
 <hr />
 <div class="container">
-    <MarkdownView FromUrl="/markdown/about-me/interests.md" />
+    @if (SelectedSection == Section.Interests)
+    {
+        <button type="button" class="collapsible" @onclick="@((e) => { SelectedSection = Section.None; })"><h2>Personal Interests</h2></button>
+        <div class="collapsible-content">
+            <MarkdownView FromUrl="/markdown/about-me/interests.md" />
+        </div>
+
+    }
+    else
+    {
+        <button type="button" class="collapsible" @onclick="@((e) => { SelectedSection = Section.Interests; })"><h2>Personal Interests</h2></button>
+    }
 </div>
 <div class="container">
     <hr />
-    <h2>Stories</h2>
-    @if (selectedStory.Key == SelectedStory.FE)
+    @if (SelectedSection == Section.Stories)
     {
-        <hr />
-        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.FE, "/markdown/about-me/stories/fe.md"); })"><h3>Flight Engineer</h3></button>
+        <button type="button" class="collapsible" @onclick="@((e) => { SelectedSection = Section.None; })"><h2>Life Stories</h2></button>
         <div class="collapsible-content">
-            <MarkdownView FromUrl="/markdown/about-me/stories/fe.md" />
+            <Stories/>
         </div>
-        <hr />
     }
     else
     {
-        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.FE, "/markdown/about-me/stories/fe.md"); })"><h3>Flight Engineer</h3></button>
-    }
-
-
-    @if (selectedStory.Key == SelectedStory.ProSe)
-    {
-        <hr />
-        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.ProSe, "/markdown/about-me/stories/pro-se.md"); })"><h3>Pro Se</h3></button>
-        <div class="collapsible-content">
-            <MarkdownView FromUrl="/markdown/about-me/stories/pro-se.md" />
-        </div>
-        <hr />
-    }
-    else
-    {
-        <button type="button" class="collapsible" @onclick="@((e) => { selectedStory = new(SelectedStory.ProSe, "/markdown/about-me/stories/pro-se.md"); })"><h3>Pro Se</h3></button>
+        <button type="button" class="collapsible" @onclick="@((e) => { SelectedSection = Section.Stories; })"><h2>Life Stories</h2></button>
     }
 </div>

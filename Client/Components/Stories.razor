@@ -1,0 +1,18 @@
+﻿<div class="card">
+    <div class="row">
+        <div class="col-2">
+            <button type="button" class="collapsible" @onclick="@((e) => { OnStorySelected(StoryName.FE).GetAwaiter().GetResult(); })"><h4>FE</h4></button>
+        </div>
+        <div class="col" style="width:100%; float:right;">
+            <MarkdownView FromUrl="/markdown/about-me/stories/tldr/fe_tldr.md" />
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-2">
+            <button type="button" class="collapsible" @onclick="@((e) => { OnStorySelected(StoryName.ProSe).GetAwaiter().GetResult(); })"><h3>Pro Se</h3></button>
+        </div>
+        <div class="col" style="width:100%; float:right;">
+            <MarkdownView FromUrl="/markdown/about-me/stories/tldr/pro-se_tldr.md" />
+        </div>
+    </div>
+</div>

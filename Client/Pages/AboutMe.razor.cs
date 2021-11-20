@@ -5,15 +5,14 @@ namespace BlazorApp.Client.Pages
 {
     public partial class AboutMe : ComponentBase
     {
-        private enum SelectedStory
+        private enum Section
         {
-            FE,
-            ProSe,
+            Interests,
+            Stories,
             None
         }
 
-        private KeyValuePair<SelectedStory, string> selectedStory { get; set; }
-            = new(SelectedStory.None, string.Empty);
-
+        private Section SelectedSection 
+        { get; set; } = Section.None;
     }
 }

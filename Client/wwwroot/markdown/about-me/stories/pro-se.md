@@ -1,1 +1,6 @@
-﻿I was sued by a collection agency over what was a fraudulant collection and defended myself pro-se (self represented) and won (because the collection was in fact, fraudulant).
+﻿# Citizen Litigator
+I was sued by a collection agency. I didn't have the money to pay for an attourney (and they knew it).
+
+I stared cross eyed at the leagaleze of the Arizona Municipal Code until the needl appeared to me from amongst the straw...
+
+...

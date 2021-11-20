@@ -9,7 +9,7 @@
 
     <main>
         <div class="top-row px-4">
-            <button @onclick="@(() => Modal?.Show<About>("About this website", AboutModalOpts))" class="badge small btn-primary">About</button>
+            <button @onclick="@(() => Modal?.Show<About>("About this website", ModalOpts))" class="badge small btn-primary">About</button>
         </div>
 
         <article class="content px-4">
@@ -21,7 +21,7 @@
 @code {
     [CascadingParameter] public IModalService? Modal { get; set; }
 
-    private ModalOptions AboutModalOpts
+    private ModalOptions ModalOpts
     {
         get
         {

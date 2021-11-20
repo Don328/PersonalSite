@@ -1,0 +1,1 @@
+﻿I was a flight engineer on a CH-47(Chinook) helicopter

@@ -1,1 +1,4 @@
-﻿I was a flight engineer on a CH-47(Chinook) helicopter
+﻿# Helicopters are cool
+I was in the army for six years.
+
+...
