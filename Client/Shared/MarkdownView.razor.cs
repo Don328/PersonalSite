@@ -7,7 +7,7 @@ namespace BlazorApp.Client.Shared
     public partial class MarkdownView : ComponentBase
     {
         [Inject]
-        HttpClient Http { get; set; }
+        HttpClient Http { get; set; } = new();
 
         [Parameter]
         public string Content { get; set; } = string.Empty;
