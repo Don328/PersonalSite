@@ -1,4 +1,9 @@
-﻿## Education
+﻿# Resumé
+To view my personal interests and read some stories from my life experience, visit my [About Me](/about-me) page.
+
+---
+
+## Education
 - briefly highlight relevant college info
 - Army training / PLDC
 - Glaizier apprenticeship
