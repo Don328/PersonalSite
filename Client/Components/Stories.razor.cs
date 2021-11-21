@@ -53,7 +53,7 @@ namespace BlazorApp.Client.Components
                     SelectedStory = new(story, pathRoot + "fe.md");
                     break;
                 case StoryName.ProSe:
-                    Options = await GetOpts(ModalTypes.Default);
+                    Options = await GetOpts(ModalTypes.Scrollable);
                     SelectedStory = new(story, pathRoot + "pro-se.md");
                     break;
                 default:
