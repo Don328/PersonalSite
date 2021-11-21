@@ -5,17 +5,18 @@ namespace BlazorApp.Client.Utils
 {
     public static class ModalOptionsFactory
     {
+        public static int fadeTimer = 1;
 
-        public static ModalOptions GetOptions(ModalTypes type)
+        public static ModalOptions GetOptions(ModalTypes? type)
         {
             switch (type)
             {
-                default:
-                    return new ModalOptions();
                 case ModalTypes.Default:
                     return Default();
                 case ModalTypes.Scrollable:
                     return Scrollable();
+                default:
+                    return Default();
             }
 
         }
@@ -25,8 +26,11 @@ namespace BlazorApp.Client.Utils
             var opts = new ModalOptions()
             {
                 Position = ModalPosition.Center,
-                Animation = ModalAnimation.FadeInOut(1),
+                Animation = ModalAnimation.FadeInOut(fadeTimer),
                 HideHeader = true,
+                ContentScrollable = false,
+                DisableBackgroundCancel = false,
+                HideCloseButton = false,
             };
             return opts;
         }
@@ -36,8 +40,12 @@ namespace BlazorApp.Client.Utils
             var opts = new ModalOptions()
             {
                 Position = ModalPosition.Center,
-                Animation = ModalAnimation.FadeInOut(1),
+                Animation = ModalAnimation.FadeInOut(fadeTimer),
                 ContentScrollable = true,
+                HideHeader = false,
+                HideCloseButton = false,
+                DisableBackgroundCancel = false,
+
             };
             return opts;
         }
