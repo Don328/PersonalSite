@@ -1,1 +1,1 @@
-﻿I was sued by a collection agency over what was a fraudulant collection and defended myself pro-se (self represented) and won (because the collection was in fact, fraudulant).
+﻿The one where I cosplayed as an attourney

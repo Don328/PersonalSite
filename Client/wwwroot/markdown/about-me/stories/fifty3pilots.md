@@ -1,5 +1,5 @@
-﻿# "We can make it"
---- 
+﻿---
+
 You get used to the sounds of the different radios after a few hundred flight hours. You can tell, just by the background noise, the static, exactly which radio the little voice in your head is comming through over.
 
 "We thnk we can make it" It was the UHF; The "uniform" radio, so called because of its use of the letter 'U' at the beginnig of its name. The UHF radio was used primarily to talk to tower (air traffic controll).

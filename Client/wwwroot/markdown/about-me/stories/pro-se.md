@@ -1,6 +1,246 @@
-﻿# Citizen Litigator
-I was sued by a collection agency. I didn't have the money to pay for an attourney (and they knew it).
+﻿---
 
-I stared cross eyed at the leagaleze of the Arizona Municipal Code until the needl appeared to me from amongst the straw...
+I had been out of the army for a little over a year. I was working as an aircraft mechanic, doing routine inspections and maintainence. I wasn't happy.
 
-...
+A close friend of mine was moving to Pheonix. A former co-worker of his had been trying to convince him to move down there for some time. He was making pretty good money and Ian a wanted a piece of it. So did I.
+
+We flew down and checked out these jobs. We'd be fixing air conditioning systems. We decided to move.
+
+We packed up our things, drove down and found an appartment. We started work right away.
+
+After fixing helicopters and airplanes, working on AC systems was pretty simple. The technical aspects were never an issue. It wasn't long however, before we both came to the conclusion that this was not what either of us wanted to be doing.
+
+The pay was almost exclusively based on commisions. The job consisted of inspecting customer's AC systems, identifying maintenance issues, and recommending repairs and upgrades. We had nearly all of the parts necessary so, in most cases we would replace or install the necessary parts immediatly.
+
+We both noticed pretty quickly that the staus quo was not something we were comfortable with. When we first started, we were riding along with other technitians, learning the job. These guys were unscrupulous.
+
+Imagine walking into an old woman's house and trying every trick you can to convince her to buy a $350 capacitor that she doesn't actually need. Lie to her. Tell her it it will save her money on her electric bill. Tell her that her AC system is working too hard and without this capacitor, it might just give out at exactly the worst time, leaving her stranded in 115º heat, being cooked alive in her own home.
+
+When she explains to you that she is on a fixed income and that she cannot afford it, you just keep explaining how an electric motor or pump needs so much more power to start than it does durring normal operations and that every time it clicks on without this big capaciter installed, it is shortening the lifespan of the pump and eventially it *will* give out, usually on the hottest of days.
+
+Neither of us were comfortable with the tactics. There were plenty of legitimate repairs to do without resorting to selling snake oil to peoples grandmothers, we though. There was a big problem though...
+
+---
+
+This was in the spring of 2008. At the same time that we were struggling to get our footing with our new jobs, the entire global economy was collapsing. Legitimate repairs or not, buisness was almost non-existant. Even the technicians who were used to making $125-200k/year were struggling to make ends meet. The two of us were making almost no money at all.
+
+There came a time when we both had to come to terms with the situation. Rent was about to come due and we were both in the position where, if we paid it, we would have no money for food or gas, or anything else. We could stay in our appartment and starve, or we could pack up and go back home. If we waited, we wouldn't have the money to do either. So we decided to leave.
+
+---
+We explained our situation to he appartment management office. We asked them if there was a deal we could reach to be released from our lease. We offered to pay a couple of months rent in installments. They told us that we would have to pay the entire remaining lease (about 10 months worth, or about $18K). This was obviously not possible. Our only real choice was just to pack up and go. So that's what we did. We borrowed money from parents, we maxed out credit cards, we exhausted just about every monetary rescource we had and we packed up and came back to Washington.
+
+It was barely a month before we started gettig phone calls from a collection agency attempting to collect our debt. Neither of us had any money. They were calling each of us and asking for $18K. None of it seemed right, but there wasn't anything I could do at the time. I was still looking for work, I had no money.
+
+I eventually found work through the glaziers union and started an apprentiship program. The collection calls stopped. I had been checking my credit report and the broken lease had not been posted as of late 2008. I had plenty of other debts to worry about at the time, and spent the four years of my apprentiship fixing my credit. The lease debt eventually appeared on my report sometime in 2009 in the amount of $12k. By the time I was a journeyman glazier (four years later), the broken lease was my only remaining debt. So I decided to do something about it.
+
+---
+
+My friend had gotten rid of the debt in a bankruptsy a few years earlier. The collection agency hadn't called in a couple of years at this point. It was just sitting on my credit report affecting my ability to get credit. As a journeyman glazier, I was making a decent wage but I couldn't fincance a car for less than 20% interest and buying a house was completely out of the question.
+
+Prior to his bankrupsy, when the collectors first started calling, my friend made a very curious phone call. He was trying to get a copy of our lease from the appartment management office. But when he called, they had no idea who he was. It turns out, the complex was sold to another management agency about a month after we left. To try and get a copy of our lease, they suggested we call the corporate office of the previous management group.
+
+This had been knawing on me for a few years by this point. It just didn't seem right that they could sell the property, then charge us for months of rent afterwards. I didn't know anything about tennant laws. It just didn't seem right.
+
+At this point it was over four years after we left Phoenix. I wanted to get rid of the debt, but I wasn't interested in paying it. It wasn't right and I was going to prove it.
+
+I began looking through the Arizona municipal codes. It was a haystack and I didn't really know what my needle even looked like. Most of what I was reading was gibberish to my non-leagally trained brain, but I just keept going back, looking for the smoking gun.
+
+And after a few weeks, I found it!
+
+---
+
+In Arizona, as in most (if not all) states, when you sign a lease you are obligated to pay it in full. If you leave, you are still on the hook. The landlord however, has a couple of obligations. After you leave, the property owner must offer the property for renal at a "reasonable price" within a "reasonable period of time" after the lease was broken. This gives them a month or so to perform any necessary repairs before putting it back on the market. If the property is re-rented, the broken lease is terminated. The landlord can only charge for the months that were under lease while the property was vacant.
+
+This brings up a couple of interesting points about my case:
+- The full amount of the lease (the $18k they tried to collect immediatly) cannot be charged until the lease is expired. In other words, they would have had to wait another ten months to accumulate that sum.
+- When the complex was sold, the leaseholder no longer had control of the property. The lease should have been terminated.
+
+In my estimation, the most we could have been chared was maybe a couple thousand each. The more I looked, the more I was convinced that this debt was not legitimate.
+
+---
+I sent the collection agency a letter explaining what I had found and asking them to remove the debt. I laid out all of the facts in the case and cited the statutes I had found supporting my position.
+
+Naive, I expected a response. I waited. I got none.
+
+I realized that I was going to need proof that they had recieved my letter, so a month later I sent it again, this time using registered mail.
+
+Still no response.
+
+I wrote a follow up letter a couple months later. I restated my postion, and asked them to read my origional letter.
+
+After another month of waiting, I was beginning to realize that sending them letters was not going to work. I started calling them on the phone.
+
+For about a week, my daily routine after work was to give them a call and explain my position to whoever I was talking to.
+
+Nothing I was saying was getting anywhere. I felt like that old woman being sold the overpriced capacitor that she didn't need. Nothing I said would register at all, they would just keep trying to convince me that I needed to start paying them money. Eventually, we would reach an impass and they would tell me that I needed to talk to their supervisor. I would be given a name and an extension. My next afternoon was planned.
+
+By the end of the week, as soon as I called, I was told that the only person authorized to talk to me was the owner of the company. Finally I was getting somewhere, I thought.
+
+"Great! Can you transfer me?" I asked. Of course he was on vacation. He wouldn't be back until Monday.
+
+When I did finally talk to him, the results were no better. He was just like any of his empoloyees. It was obvious that no one had read any of my letters, including him. He belittled me, told me I needed to start taking responsiblity and pay my bills. I told him that I pay all of my bills, the ones that aren't based on fraud. This was getting nowhere.
+
+---
+
+I hired a lawyer. I needed these people to take my claims seriously. I was right and I knew it. I didn't have much money, but I was able to post a $2,000 retainer and my lawyer got to work.
+
+I sent my attourney copies of my letters. I had been asking the collection company for copies of my account notes and been getting nowhere, so I put him to work on that.
+
+If you've every retained an attourney, you already know, but everything they do on your behalf cost you money.
+- A fifteen minute conversation asking him to request my account notes: $200
+- My attourney sending an email (that I had basically spelled out for him): $200
+- A ten minute conversation where I recieve the requested documents and explain that I was expecting *all* of the account notes, not just a couple of random months: $200
+- Attourney sends another email requesting the remainder of the records: $200
+- A ten minute conversation about the now aquired documents: $200.
+
+You can see where this is going.
+
+It didn't take long before my retainer was running low. My attourney called and broke down my options:
+
+- Sue the collections agency.
+
+*or*
+- Wait until the statute of limitations runs out and file to have the debt removed
+
+Suing the collection agency is what I really wanted to do. He told me he thought I had a decent case but that it wasn't at all garaunteed. He said it would cost me around $10k by the time it got to trial. I would be reimbursed if I won, but I would be out of pocket until then. His advice was to cut my retainer and wait and we could just have the debt removed.
+
+Of course, that conversation also cost me $200 and "cutting my retainer" just consisted of not adding any more money to it because it was completely drained. Funny how that works.
+
+---
+
+At this point, at least I had a clear vision of the future. I just had to wait about a year and get rid of it. So I waited...
+
+And then I recieved a summons in the mail. US Collections West had sued *me*.
+
+I can only assume that when they found out that I had dropped my attourney, they took it as a sign of weekness and assumed that he had advised me to drop it because my case was weak. Irregaurdless of their motives, I knew I couldn't afford re-hiring my attourney. I didn't want to add another 10k to my debt if it didn't go well. I figured I could win on the merrits of my case either way anyway. I just had to figure out how to do it myself.
+
+In the same way that I poured over Arizona's municipal codes looking for my smoking gun, I started researching the procedure required of me to get to trial. I learned how to respond to motions, to ask for extra respoinse time due to being out of state, to bring up motions of my own, to request discovery documents and how to file my own discovery documentation. The collections company tried every trick they could to get a summary judgement (without trial) but I was able to fend off every attempt.
+
+About six months later, the trial was finally scheduled. I bought a new suit and flew to Pheonix.
+
+---
+
+Let me just stop for a moment and comment on how crazy everyone thought I was. There was almost no one that thought this was a good idea. Even the people who supported me full, my parents for instance... I could tell they thought I was completly nuts.
+
+"They always win. Thats how it works", people would say. "They have all the money and the attourneys. You're just some dude. It doesn't matter if you're right. They'll find a way to twist it into their favor. It's what they do."
+
+They weren't worng. But I was determined.
+
+---
+
+I sat alone behind a desk on the defendant's side of the courtroom. Behind the plaintiff's desk there were two attourneys and two witnesses. One of the witnesses was the owner of the collections agency who I had had the pleasure of speaking to previously.
+
+I made opening arguments, the plaintiff brought their witnesses. I cross examined them.
+
+Their first witness was an aparment manager for the management firm who we had our lease with. After several minutes of questions meant to establish the standard practices used to offer re-rentals after leases are broken, it was my turn. I could bore you with all of the details, but heres the gist of how the interview ended:
+
+Me: "All of these things you say you do: Take out adds, make discount offers, post signs, etc., where these things done for the appartment in question?"
+Witness: "Yes"
+Me: "Do you know that, or are you speculating?"
+Witness: "These things are standard practice. We always do those things, so yes, they were done for your appartment."
+Me: "Did you work for Alexa Lion's Gate in July of 2008?"
+Witness: "Yes"
+Me: "And when the complex was sold, did you continue to work for Alexa Lions Gate, or did you start working for the new management company?"
+Witness: "No, I continued to work for Alexa Lion's Gate."
+Me: "So you don't actually know if those things were done for *my* appartment. You weren't working there at the time, is that right?"
+Plaintiff: "Objection. He's leading the witness"
+Judge: "Overruled"
+Me: "Its Ok. If you're just speculating, you can say it. Do you know for sure that those things were done for the appartment in question, or are you speculating?"
+Witness: (after a pause) "I guess I'm just speculating"
+Me: "No further questions."
+
+---
+
+The interrigation of Mr. Darnell was a bit more combative. I have to admit that I didn't really have a goal in mind with my questions for him. There wasn't really anything I could think to ask him that would build my case. I almost declined to question him. But he was so arrogant when we talked on the phone, I just wanted to get him to show it in court.
+
+It was clear that I was making him angry. His attourney stepped in with an objection that I was badgering the witness. He was right. The judge agreed and sustained his objection. I didn't have any more questions.
+
+We each presented our closing remarks and the judge had his decision.
+
+---
+
+"First I'm going to tell you how I find this case." he said "Then I'll explain why and detail the next steps to be taken by each party"
+
+I was a nervous as I have ever been.
+
+"I find that the plaintiff has no grounds in this case"
+
+It didn't sink in until the plaintiff's attourney stood up in protest. "Your honor..."
+
+"Sit down. I'll explain why..."
+
+---
+
+The reasons he gave were the exact reasons I had found a year earlier, pulling my hair out combing through the AZ municipal codes. What I had written in my first letter was exactly the leagal grounds that won the case for me.
+
+The plaintiffs didn't even wait for the judge to finish his explaination before requesting to be excused form the courtroom. By the time I got outside, they were long gone.
+
+---
+
+As part of the judgement, I was awarded some money for lost wages, airfare, etc. for the time and expense it took to attend the trial. The judge explained the process to me:
+- Wait for payment
+- Sign a Satisfaction of Judgement form
+  - 1 copy to the court
+  - 1 copy to the plaintiff
+- If payment is not prompt, file for garnishment
+
+So I waited.
+
+After a month, I decided to write a letter. 
+
+"The purpose of this correspondance is to collect a debt. Any and all information obtained as a result of this letter will be used for those purposes." (Of course I began the letter like that. How could I resist?)
+
+A couple weeks later I recieved a letter from US Collections West containing:
+-  A satisfaction of Judgement form
+-  A document titled "Mutual Release of Responsiblity"
+-  A copy of a check made out for the amount owed to me
+
+I was a bit confused. I was expecting a check. What I got was a phot copy of a check. It did't even show the whole check. Only the upper half of the check was visable in the copy. I decided to give their attourney a call.
+
+---
+
+I played coy at first. I was a bit confused about what to do next, I told him. I was expecting a check, not a photocopy. I didn't know what this Mutual Release of Responsibility even was. The judge told me I just needed to fill out the Satisfaction of Judgement.
+
+"The copy of the check is just to reassure you that we have the check. Just fill out the satisfaction of judgement and the mutual release of responsibility and we'll send you the check."
+
+"I'm still a little confused", I told him. I'm not sure where this mutual release of responsibility came from."
+
+"We would just feel a lot better if you would fill it out and send it to us. Then we'll send you the check."
+
+I stopped playing coy...
+
+"I don't care about how you feel. Send me the check and I'll send the satisfaction of judgement. You aren't getting the mutual release of responsibility."
+
+"We would just be a lot more comfortable if.."
+
+"Send me the check. Do I need to remind you that there is a judgement against you?"
+
+"We will send you the check. Just as soon as you..."
+
+"Send me the check"
+
+"Fine"
+
+---
+
+Another couple of weeks passed and I got another letter. This one did contain a check. It was the same check from the photocopy. Finally, I had the check.
+
+There was just one problem. The reason the photocopy only showed the top half of the check became obvious.
+
+There was no signature.
+
+They sent me a check without signing it.
+
+They were still fucking with me.
+
+---
+
+I sent one last letter. It was short and sweet. I told them how much I appreciated them sending me the check but that I was expecting to recieve payment for the debt that they owed me. I told them how I had ordered a frame to place the unsigned check into and planned on hanging it on the wall. I told them that I still expected to recieve payment. I added a sum accounting for the cort allowable interest to be charged for delinquent judgements and informed them of their new total. I said things like:
+
+"Your conduct displays contempt for the judge, for the court, and for the law itself and is unbecomming of such an upstanding member of the Arizona Bar Association."
+
+---
+
+After a couple more weeks, I got the check.
+
+I still have the unsigned check hanging on the wall in my office too.
