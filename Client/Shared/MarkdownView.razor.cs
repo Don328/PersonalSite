@@ -21,9 +21,10 @@ namespace BlazorApp.Client.Shared
             await base.OnInitializedAsync();
 
             if (string.IsNullOrEmpty(Content))
-                Content = String.IsNullOrEmpty(FromUrl) ?
-                    "Content or FromUrl property is not set or is invalid" 
-                    : await MarkdownServices.GetContentFromUrl(Http, FromUrl);
+            {
+                Content = await MarkdownServices
+                      .GetContentFromUrl(Http, FromUrl);
+            }
         }
 
         private MarkupString RenderAsHtml()
