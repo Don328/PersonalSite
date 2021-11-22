@@ -54,6 +54,10 @@
             border-color: var(--primaryGrayDark);
         }
 
+.sm-screen-only {
+    padding: 1rem;
+}
+
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;
@@ -62,5 +66,10 @@
     .collapse {
         /* Never collapse the sidebar for wide screens */
         display: block;
+    }
+
+
+    .sm-screen-only {
+        display:none;
     }
 }
