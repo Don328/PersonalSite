@@ -27,7 +27,7 @@ namespace BlazorApp.Client.Utils
             {
                 Position = ModalPosition.Center,
                 Animation = ModalAnimation.FadeInOut(fadeTimer),
-                HideHeader = true,
+                HideHeader = false,
                 ContentScrollable = false,
                 DisableBackgroundCancel = false,
                 HideCloseButton = false,
