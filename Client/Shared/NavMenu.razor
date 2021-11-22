@@ -9,7 +9,7 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
         <div class="sm-screen-only nav-item">
-            <button @onclick="@(() => Modal?.Show<About>("About this website", ModalOpts))" class="badge small btn-primary" style="float:right">About</button>
+            <button @onclick="@(() => Modal?.Show<About>(string.Empty, ModalOpts))" class="badge small btn-primary" style="float:right">About</button>
         </div>
     <nav class="flex-column">
         <div class="nav-item px-3">

@@ -24,7 +24,7 @@ namespace BlazorApp.Client.Shared
             get
             {
                 return ModalOptionsFactory
-                    .GetOptions(ModalTypes.Default);
+                    .GetOptions(ModalTypes.Scrollable);
             }
         }
     }

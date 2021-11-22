@@ -16,7 +16,7 @@ public class ModalOptionsFactoryTests
 
         Assert.True(options.Position == ModalPosition.Center);
         Assert.True(options.Animation.Duration == ModalOptionsFactory.fadeTimer);
-        Assert.True(options.HideHeader);
+        Assert.False(options.HideHeader ?? false);
         Assert.False(options.ContentScrollable ?? false);
         Assert.False(options.DisableBackgroundCancel ?? false);
         Assert.False(options.HideCloseButton ?? false);
@@ -43,13 +43,13 @@ public class ModalOptionsFactoryTests
     }
 
     [Fact]
-    public void TestGetOptions_Default_HideHeaderIsTrue()
+    public void TestGetOptions_Default_HideHeaderIsFalse()
     {
         var type = ModalTypes.Default;
 
         var options = ModalOptionsFactory.GetOptions(type);
 
-        Assert.True(options.HideHeader);
+        Assert.False(options.HideHeader ?? false);
     }
 
     [Fact]
