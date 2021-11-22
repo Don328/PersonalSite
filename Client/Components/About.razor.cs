@@ -5,8 +5,8 @@ namespace BlazorApp.Client.Components
 {
     public partial class About : ComponentBase
     {
-        [CascadingParameter]
-        BlazoredModalInstance? ModalInstance { get; set; }
+        [CascadingParameter] BlazoredModalInstance?
+            ModalInstance  { get; set; }
 
         async void Close()
         {
