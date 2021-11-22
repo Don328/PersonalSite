@@ -17,16 +17,3 @@
         </article>
     </main>
 </div>
-
-@code {
-    [CascadingParameter] public IModalService? Modal { get; set; }
-
-    private ModalOptions ModalOpts
-    {
-        get
-        {
-            return ModalOptionsFactory
-                .GetOptions(ModalTypes.Default);
-        }
-    }
-}
