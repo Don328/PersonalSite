@@ -4,5 +4,8 @@
     </div>*@
     <h1>About this Website</h1>
     <MarkdownView FromUrl="/markdown/about.md" />
-    <span class="accent-text">click anywhere outside of this window to close</span>
+    @if(ModalInstance != null)
+    {
+        <button @onclick="Close" class="btn btn-primary" style="float:right">Close</button>
+    }
 </div>

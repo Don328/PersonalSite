@@ -5,7 +5,7 @@ namespace BlazorApp.Client.Utils
 {
     public static class ModalOptionsFactory
     {
-        public static int fadeTimer = 1;
+        public static float fadeTimer = .5f;
 
         public static ModalOptions GetOptions(ModalTypes? type)
         {
