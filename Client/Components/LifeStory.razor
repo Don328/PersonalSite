@@ -1,5 +1,8 @@
 ﻿<div class="modal-default">
     <h1>@Title</h1>
     <MarkdownView FromUrl=@FilePath />
-    <span class="accent-text">click anywhere outside of this window to close</span>
+    @if (ModalInstance != null)
+    {
+        <button @onclick=Close class="btn btn-lg btn-outline-primary" style="float:right">Close</button>
+    }
 </div>
