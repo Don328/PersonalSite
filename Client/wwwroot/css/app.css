@@ -3,7 +3,7 @@
 .dark-mode {
     --background: #5A6E76;
     --font-color: #C6DCE5;
-    --highlight: #4C626C;
+    --highlight: #A5BFB8;
     --accent: #7EB3C7;
     --link: #9BDE7E;
     --link-secondary: #00C4FF;
@@ -13,7 +13,7 @@
     --background: #EFF1F2;
     --font-color: #5A6E76;
     --accent: #C7CCAD;
-    --highlight: #F2F4F5;
+    --highlight: #344B46;
     --link: #80B2C9;
     --link-secondary: #454748;
 }
