@@ -12,15 +12,21 @@
             <select @onchange=AppState.ToggleTheme style="margin-left:1rem">
                 @foreach (var theme in themes)
                 {
-                   <option selected=@AppState.IsSelectedTheme(theme) value=@theme>@theme.ToString()</option> 
+                    <option selected=@AppState.IsSelectedTheme(theme) value=@theme>@theme.ToString()</option>
                 }
             </select>
 
             <button @onclick="@(() => Modal?.Show<About>(string.Empty, ModalOpts))" class="badge small btn-primary">About</button>
         </div>
 
-        <article class="content px-4">
-            @Body
-        </article>
+        <div class="container">
+            <div class="col-auto"></div>
+            <div class="col">
+                <article class="content px-4">
+                    @Body
+                </article>
+            </div>
+            <div class="col-auto"></div>
+        </div>
     </main>
 </div>
