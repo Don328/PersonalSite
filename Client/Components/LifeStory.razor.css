@@ -1,11 +1,13 @@
 ﻿.story {
     background:var(--background);
     color:var(--font-color);
-    opacity:100;
+    padding:3em;
+    padding-left:5em;
+    padding-right:5em;
 }
 
 .title {
-    color:var(--accent);
+    color:var(--font-color);
 }
 
 .modal {

@@ -1,26 +1,26 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 .dark-mode {
-    --background:#282828;
-    --font-color:#B0B0B0;
-    --accent: #474747;
-    --highlight: #ECECEC;
-    --link: #00CC09;
-    --link-secondary:#0077cc;
+    --background: #5A6E76;
+    --font-color: #C6DCE5;
+    --highlight: #4C626C;
+    --accent: #7EB3C7;
+    --link: #9BDE7E;
+    --link-secondary: #00C4FF;
 }
 
 .light-mode {
-    --background:#f8f8f8;
-    --font-color:#282828;
-    --accent: #B5B5B5;
-    --highlight: #676767;
-    --link: #0077cc;
-    --link-secondary:#00cc09;
+    --background: #EFF1F2;
+    --font-color: #5A6E76;
+    --accent: #C7CCAD;
+    --highlight: #F2F4F5;
+    --link: #80B2C9;
+    --link-secondary: #454748;
 }
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
+    font-size:16pt;
 }
 
 .page {
@@ -79,6 +79,8 @@ a, .btn-link {
     }
 
 .content {
+    
+    max-width:1000px;
     padding-top: 1.1rem;
 }
 
@@ -150,7 +152,6 @@ a, .btn-link {
     color:var(--font-color);
     float:none;
     padding:5em;
-    font-size:18pt;
     word-wrap:break-word;
     outline-color:transparent;
     max-width:90%;
@@ -160,10 +161,6 @@ a, .btn-link {
     border-block-width:0;
     
 }
-.modal.modal-default, h1 {
-    color: var(--highlight);
-}
-
     .modal-default .accent-text {
         color:var(--accent);
         background-color:var(--highlight);
@@ -171,3 +168,26 @@ a, .btn-link {
         float:right;
     }
 
+@media (min-width:600px) {
+    html, body {
+        font-size: 12pt;
+    }
+}
+
+@media (min-width:800px) {
+    html, body {
+        font-size: 14pt;
+    }
+}
+
+@media (min-width:1000px) {
+    html, body {
+        font-size: 16pt;
+    }
+}
+
+@media (min-width:1200px) {
+   html, body {
+        font-size:18pt;
+    }
+}
