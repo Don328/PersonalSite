@@ -1,7 +1,19 @@
 ﻿.theme-toggle {
-
+    background:var(--background);
+    color:var(--font-color);
+    border-color:var(--accent);
+    border-width:.1em;
+    border-radius:.5em;
+    padding:.25em;
 }
 
 .about-button {
-
+    font-size:.5em;
+    border-radius:1em;
+    background:var(--highlight);
+    color:var(--background);
+    padding:.5em;
+    padding-top:.35em;
+    padding-bottom:.35em;
+    border-width:0;
 }

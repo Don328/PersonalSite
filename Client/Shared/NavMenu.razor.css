@@ -1,6 +1,7 @@
 .navbar-toggler {
     background-color: var(--accent);
     float:right;
+    margin:.25em;
 }
 
 .top-row {
