@@ -28,6 +28,7 @@ html, body {
     color:var(--font-color);
 }
 
+
 h1:focus {
     outline: none;
 }
@@ -59,6 +60,10 @@ a, .btn-link {
         background-color: var(--highlight);
         border-color: var(--background);
     }
+
+.navbar .home-link {
+    color:var(--font-color);
+}
 
 .nav-item {
     color: var(--link);
