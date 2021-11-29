@@ -1,5 +1,5 @@
 using BlazorApp.Client.Utils;
-using BlazorApp.Client.Utils.Constants;
+using BlazorApp.Client.Utils.Enums;
 using Blazored.Modal;
 using System;
 using Xunit;

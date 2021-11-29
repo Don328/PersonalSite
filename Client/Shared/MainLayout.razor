@@ -2,13 +2,20 @@
 @using BlazorApp.Client.Utils.Constants
 @inherits LayoutComponentBase
 
-<div class="page">
+<div class="page @selectedTheme">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
+            <select @onchange=ToggleTheme style="margin-left:1rem">
+                @foreach (var theme in themes)
+                {
+                   <option selected=@IsSelectedTheme(theme) value=@theme>@theme.ToString()</option> 
+                }
+            </select>
+
             <button @onclick="@(() => Modal?.Show<About>(string.Empty, ModalOpts))" class="badge small btn-primary">About</button>
         </div>
 

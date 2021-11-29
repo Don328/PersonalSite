@@ -1,4 +1,4 @@
-﻿using BlazorApp.Client.Utils.Constants;
+﻿using BlazorApp.Client.Utils.Enums;
 using Blazored.Modal;
 
 namespace BlazorApp.Client.Utils
