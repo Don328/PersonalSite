@@ -168,14 +168,14 @@ a, .btn-link {
         float:right;
     }
 
-@media (max-width:799px) {
+@media (max-width:699px) {
     html, body {
-        font-size: 14pt;
+        font-size: 12pt;
     }
 }
 
 
-@media (min-width:800px) {
+@media (min-width:700px) {
     html, body {
         font-size: 16pt;
     }
