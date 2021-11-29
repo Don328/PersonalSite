@@ -1,5 +1,6 @@
 .navbar-toggler {
     background-color: var(--accent);
+    float:right;
 }
 
 .top-row {
@@ -59,13 +60,16 @@
 }
 
 
-}
-
 @media (max-width:479px) {
-
 }
 
 @media (max-width: 767px) {
+    .home-link {
+        margin-right:0;
+    }
+    .sm-screen-only {
+        padding:0;
+    }
 }
 
 @media (min-width:768px) {

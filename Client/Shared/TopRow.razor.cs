@@ -6,15 +6,13 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Client.Shared
 {
-    public partial class MainLayout : LayoutComponentBase
+    public partial class TopRow : ComponentBase
     {
-        private List<string> themes =
-            new List<string> 
-            { "light-mode", "dark-mode" };
-        
-        [CascadingParameter] AppState AppState { get; set; }
-        
-        [CascadingParameter] public IModalService? Modal { get; set; }
+        [CascadingParameter]
+        public AppState AppState { get; set; }
+
+        [CascadingParameter]
+        public IModalService Modal { get; set; }
 
         private ModalOptions ModalOpts
         {
@@ -25,4 +23,5 @@ namespace BlazorApp.Client.Shared
             }
         }
     }
+
 }
