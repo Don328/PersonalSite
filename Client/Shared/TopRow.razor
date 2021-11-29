@@ -1,0 +1,14 @@
+﻿<div class="row">
+    <div class="col">
+        <select @onchange=AppState.ToggleTheme>
+            @foreach (var theme in ThemeOptions.Themes)
+            {
+                <option selected=@AppState.IsSelectedTheme(theme) value=@theme>@theme.ToString()</option>
+            }
+        </select>
+    </div>
+    <div class="col-auto">
+        <button @onclick="@(() => Modal?.Show<About>(string.Empty, ModalOpts))" class="badge small btn-primary">About</button>
+    </div>
+</div>
+

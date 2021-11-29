@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{CF7C3565-A482-412A-BE7F-B2D5AC0DFB88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSiteTests", "PersonalSiteTests\PersonalSiteTests.csproj", "{C87330E0-280C-4E2C-9CA7-B2B0463ADD3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalSiteTests", "PersonalSiteTests\PersonalSiteTests.csproj", "{C87330E0-280C-4E2C-9CA7-B2B0463ADD3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

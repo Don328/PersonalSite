@@ -1,6 +1,4 @@
-﻿@using BlazorApp.Client.Utils
-@using BlazorApp.Client.Utils.Constants
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 
 <div class="page @AppState.SelectedTheme">
     <div class="sidebar">
@@ -9,14 +7,7 @@
 
     <main>
         <div class="top-row px-4">
-            <select @onchange=AppState.ToggleTheme style="margin-left:1rem">
-                @foreach (var theme in themes)
-                {
-                    <option selected=@AppState.IsSelectedTheme(theme) value=@theme>@theme.ToString()</option>
-                }
-            </select>
-
-            <button @onclick="@(() => Modal?.Show<About>(string.Empty, ModalOpts))" class="badge small btn-primary">About</button>
+            <TopRow/>
         </div>
 
         <div class="container">

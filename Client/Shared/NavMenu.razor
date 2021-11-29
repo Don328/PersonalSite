@@ -1,16 +1,23 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand home-link" href="">Donavan Olsen</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    
+    <div class="row">
+        <div class="col-auto">
+            <a class="navbar-brand home-link" href="">Donavan Olsen</a>
+        </div>
+        <div class="col-auto">
+            <div class="sm-screen-only">
+                <TopRow />
+            </div>
+        </div>
+        <div class="col" style="float:right">
+            <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
     </div>
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-        <div class="sm-screen-only nav-item">
-            <button @onclick="@(() => Modal?.Show<About>(string.Empty, ModalOpts))" class="badge small btn-primary" style="float:right">About</button>
-        </div>
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
