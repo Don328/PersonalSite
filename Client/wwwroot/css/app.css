@@ -168,7 +168,7 @@ a, .btn-link {
         float:right;
     }
 
-@media (min-width:400px) {
+@media (max-width:599px) {
     html, body {
         font-size: 10pt;
     }
