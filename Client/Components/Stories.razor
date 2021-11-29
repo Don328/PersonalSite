@@ -1,19 +1,16 @@
 ﻿<div class="card">
-    <div class="row" style="padding:1em;">
-        <div class="col-2">
-            <button class="btn navbar-brand" @onclick="@((e) => { OnStorySelected(StoryName.Fifty3Pilots).GetAwaiter().GetResult(); })"><h4>53 Pilots</h4></button>
-        </div>
-        <div class="col" style="width:100%; float:right;padding:1em;">
-            <MarkdownView FromUrl="/markdown/about-me/stories/tldr/fifty3pilots_tldr.md" />
-        </div>
+    <div class="card-header">
+        <button class="btn story-title" @onclick="@((e) => { OnStorySelected(StoryName.Fifty3Pilots).GetAwaiter().GetResult(); })"><h4 class="title">53 Pilots</h4></button>
     </div>
-    <hr />
-    <div class="row" style="padding:1em;">
-        <div class="col-2">
-            <button class="btn navbar-brand" @onclick="@((e) => { OnStorySelected(StoryName.ProSe).GetAwaiter().GetResult(); })"><h4>Pro Se</h4></button>
-        </div>
-        <div class="col" style="width:100%; float:right;padding:1em;">
-            <MarkdownView FromUrl="/markdown/about-me/stories/tldr/pro-se_tldr.md" />
-        </div>
+    <div class="card-body">
+        <MarkdownView FromUrl="/markdown/about-me/stories/tldr/fifty3pilots_tldr.md" />
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <button class="btn" @onclick="@((e) => { OnStorySelected(StoryName.ProSe).GetAwaiter().GetResult(); })"><h4 class="title">Pro Se</h4></button>
+    </div>
+    <div class="card-body">
+        <MarkdownView FromUrl="/markdown/about-me/stories/tldr/pro-se_tldr.md" />
     </div>
 </div>

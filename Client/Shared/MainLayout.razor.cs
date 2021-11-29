@@ -14,6 +14,8 @@ namespace BlazorApp.Client.Shared
         
         private string selectedTheme = "light-mode";
 
+        [CascadingParameter] AppState AppState { get; set; }
+        
         [CascadingParameter] public IModalService? Modal { get; set; }
 
         private ModalOptions ModalOpts
@@ -21,33 +23,19 @@ namespace BlazorApp.Client.Shared
             get
             {
                 return ModalOptionsFactory
-                    .GetOptions(ModalTypes.Scrollable);
+                    .GetOptions(ModalTypes.Scrollable, AppState);
             }
-        }
-
-        private string GetTheme()
-        {
-            return selectedTheme;
         }
 
         private void ToggleTheme()
         {
-            if (selectedTheme == "light-mode")
-            {
-                selectedTheme = "dark-mode";
-
-                StateHasChanged();
-                return;
-            }
-
-            selectedTheme = "light-mode";
-
+            AppState.ToggleTheme();
             StateHasChanged();
         }
 
         private bool IsSelectedTheme(string theme)
         {
-            return theme == selectedTheme;
+            return AppState.IsSelectedTheme(theme);
         }
     }
 }

@@ -17,6 +17,9 @@ namespace BlazorApp.Client.Components
         }
 
         [CascadingParameter]
+        public AppState AppState { get; set; }
+
+        [CascadingParameter]
         public IModalService? Modal { get; set; }
 
         private KeyValuePair<StoryName, string> SelectedStory
@@ -71,10 +74,10 @@ namespace BlazorApp.Client.Components
             {
                 case ModalTypes.Default:
                     return ModalOptionsFactory
-                        .GetOptions(ModalTypes.Default);
+                        .GetOptions(ModalTypes.Default, AppState);
                 case ModalTypes.Scrollable:
                     return ModalOptionsFactory
-                        .GetOptions(ModalTypes.Scrollable);
+                        .GetOptions(ModalTypes.Scrollable, AppState);
                 default:
                     return await Task
                         .FromResult(new ModalOptions());
