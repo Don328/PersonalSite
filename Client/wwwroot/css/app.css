@@ -168,20 +168,29 @@ a, .btn-link {
         float:right;
     }
 
-@media (max-width:699px) {
+@media (max-width:479px) {
+    html, body {
+        font-size: 10pt;
+    }
+}
+
+@media (min-width:480px) {
     html, body {
         font-size: 12pt;
     }
 }
 
+@media (min-width:768px) {
+    html, body {
+        font-size: 14pt;
+    }
+}
 
-@media (min-width:700px) {
+@media (min-width:992px) {
     html, body {
         font-size: 16pt;
     }
 }
-
-
 
 @media (min-width:1200px) {
    html, body {
