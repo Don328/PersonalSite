@@ -1,10 +1,10 @@
 .navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--background);
 }
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color:var(--background);
 }
 
 .navbar-brand {
@@ -32,9 +32,9 @@
     }
 
     .nav-item ::deep a {
-        color: var(--primaryGrayLight);
+        color: var(--hightlight);
         background-color: transparent;
-        border-color: var(--primaryGrayDark);
+        border-color: var(--highlight);
         border-radius: 4px;
         height: 3rem;
         display: flex;
@@ -43,15 +43,15 @@
     }
 
         .nav-item ::deep a.active {
-            color: var(--primaryGreen);
-            background-color: var(--primaryGrayDark);
-            border-color: var(--primaryGrayDark);
+            color: var(--link);
+            background-color: var(--background);
+            border-color: var(--accent);
         }
 
         .nav-item ::deep a:hover {
-            color: var(--primaryGreen);
-            background-color: var(--primaryGray);
-            border-color: var(--primaryGrayDark);
+            color: var(--link);
+            background-color: var(--background);
+            border-color: var(--accent);
         }
 
 .sm-screen-only {

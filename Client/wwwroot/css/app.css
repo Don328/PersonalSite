@@ -1,6 +1,9 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-:root {
+/*:root {
+
+    
+    
     --primaryGray: #595959;
     --primaryGrayDark: #333333;
     --primaryGrayLight: #C8C8C8;
@@ -8,10 +11,32 @@
     --primaryGreenDark: #6F9B4A;
     --primaryBlue: #0077cc;
     --primaryBlueLight: #4E9AC6
+}*/
+
+.dark-mode {
+    --background:#282828;
+    --font-color:#c4c4c4;
+    --accent: #878787;
+    --highlight: #E1E1E1;
+    --link: #00CC09;
+}
+
+.light-mode {
+    --background:#f8f8f8;
+    --font-color:#282828;
+    --accent: #B5B5B5;
+    --highlight: #676767;
+    --link: #0077cc;
 }
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+.page {
+    background:var(--background);
+    color:var(--font-color);
 }
 
 h1:focus {
@@ -19,49 +44,49 @@ h1:focus {
 }
 
 a, .btn-link {
-    color: var(--primaryBlue);
+    color: var(--link);
 }
 
 .btn-primary {
-    color: var(--primaryGreen);
-    background-color: var(--primaryGray);
-    border-color: var(--primaryGrayDark);
+    color: var(--font-color);
+    background-color: var(--background);
+    border-color: var(--accent);
 }
 
     .btn-primary:hover {
-        color: var(--primaryGreenDark);
+        color: var(--highlight);
         background-color: transparent;
-        border-color: var(--primaryGrayDark);
+        border-color: var(--accent);
     }
 
     .btn-primary:active {
-        color: var(--primaryGreen);
-        background-color: var(--primaryGreenDark);
-        border-color: var(--primaryGrayDark);
+        color: var(--accent);
+        background-color: var(--highlight);
+        border-color: var(--background);
     }
 
     .btn-primary:focus {
-        color: var(--primaryGreen);
-        background-color: var(--primaryGreenDark);
-        border-color: var(--primaryGrayDark);
+        color: var(--accent);
+        background-color: var(--highlight);
+        border-color: var(--background);
     }
 
 .nav-item {
-    color: var(--primaryGreen);
+    color: var(--link);
     background-color: transparent;
-    border-color: var(--primaryGrayDark);
+    border-color: var(--accent);
 }
 
     .nav-item:hover {
-        color: var(--primaryGreenDark);
+        color: var(--highlight);
         background-color: transparent;
-        border-color: var(--primaryGrayDark);
+        border-color: var(--font-color);
     }
 
     .nav-item:active {
-        color: var(--primaryGreen);
-        background-color: var(--primaryGreenDark);
-        border-color: var(--primaryGrayDark);
+        color: var(--font-color);
+        background-color: transparent;
+        border-color: var(--highlight);
     }
 
 .content {
@@ -70,7 +95,7 @@ a, .btn-link {
 
 .collapsible {
     background-color: transparent;
-    color: var(--primaryGreenDark);
+    color: var(--font-color);
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -131,8 +156,8 @@ a, .btn-link {
 
 
 .modal-default {
-    background-color:var(--primaryGrayDark);
-    color:whitesmoke;
+    background-color:var(--background);
+    color:var(--font-color);
     float:none;
     padding:5em;
     font-size:18pt;
@@ -146,12 +171,12 @@ a, .btn-link {
     
 }
 .modal.modal-default, h1 {
-    color: var(--primaryBlueLight);
+    color: var(--highlight);
 }
 
     .modal-default .accent-text {
-        color:var(--primaryGreenDark);
-        background-color:whitesmoke;
+        color:var(--accent);
+        background-color:var(--highlight);
         padding:.5em;
         float:right;
     }

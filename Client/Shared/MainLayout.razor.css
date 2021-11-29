@@ -6,16 +6,15 @@
 
 main {
     flex: 1;
-    background-color:#E2E7E5
+
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, #000000 0%, #C3C3C3 99%);
+    background-image: linear-gradient(180deg, var(--background) 25%, var(--accent) 99.99%);
 }
 
 .top-row {
-    background-image: linear-gradient(90deg, #000000 0%, #C3C3C3 99%);
-    border-bottom: 1px solid #d6d5d5;
+    background-image: linear-gradient(90deg, var(--background) 65%, var(--accent) 99.99%);
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;

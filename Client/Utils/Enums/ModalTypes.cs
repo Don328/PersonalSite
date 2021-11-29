@@ -1,4 +1,4 @@
-﻿namespace BlazorApp.Client.Utils.Constants
+﻿namespace BlazorApp.Client.Utils.Enums
 {
     public enum ModalTypes
     {
