@@ -7,21 +7,21 @@ namespace BlazorApp.Client.Utils
     {
         public static float fadeTimer = .5f;
 
-        public static ModalOptions GetOptions(ModalTypes? type)
+        public static ModalOptions GetOptions(ModalTypes? type, AppState state)
         {
             switch (type)
             {
                 case ModalTypes.Default:
-                    return Default();
+                    return Default(state);
                 case ModalTypes.Scrollable:
-                    return Scrollable();
+                    return Scrollable(state);
                 default:
-                    return Default();
+                    return Default(state);
             }
 
         }
 
-        private static ModalOptions Default()
+        private static ModalOptions Default(AppState state)
         {
             var opts = new ModalOptions()
             {
@@ -31,11 +31,12 @@ namespace BlazorApp.Client.Utils
                 ContentScrollable = false,
                 DisableBackgroundCancel = false,
                 HideCloseButton = false,
+                Class=state.SelectedTheme,
             };
             return opts;
         }
 
-        private static ModalOptions Scrollable()
+        private static ModalOptions Scrollable(AppState state)
         {
             var opts = new ModalOptions()
             {
@@ -45,7 +46,8 @@ namespace BlazorApp.Client.Utils
                 HideHeader = false,
                 HideCloseButton = false,
                 DisableBackgroundCancel = false,
-
+                Class = state.SelectedTheme + " modal",
+                OverlayCustomClass = state.SelectedTheme + "modal-overlay",
             };
             return opts;
         }

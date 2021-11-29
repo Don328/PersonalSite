@@ -1,24 +1,12 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-/*:root {
-
-    
-    
-    --primaryGray: #595959;
-    --primaryGrayDark: #333333;
-    --primaryGrayLight: #C8C8C8;
-    --primaryGreen: #AAE17A;
-    --primaryGreenDark: #6F9B4A;
-    --primaryBlue: #0077cc;
-    --primaryBlueLight: #4E9AC6
-}*/
-
 .dark-mode {
     --background:#282828;
-    --font-color:#c4c4c4;
-    --accent: #878787;
-    --highlight: #E1E1E1;
+    --font-color:#B0B0B0;
+    --accent: #474747;
+    --highlight: #ECECEC;
     --link: #00CC09;
+    --link-secondary:#0077cc;
 }
 
 .light-mode {
@@ -27,6 +15,7 @@
     --accent: #B5B5B5;
     --highlight: #676767;
     --link: #0077cc;
+    --link-secondary:#00cc09;
 }
 
 html, body {
@@ -154,6 +143,7 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+/* Modals */
 
 .modal-default {
     background-color:var(--background);

@@ -7,61 +7,40 @@ namespace BlazorApp.Client
 {
     public partial class AppState : ComponentBase
     {
-        private Theme theme = Theme.dark;
-
-        [Inject]
-        public IJSInProcessRuntime JS { get; set; }
+        private string selectedTheme { get; set; }
+            = "light-mode";
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
 
-        public Theme Theme
+        public string SelectedTheme
         {
             get
             {
-                return theme;
+                return selectedTheme;
             }
-            set
+            private set
             {
-                theme = value;
-
-                JS.InvokeVoid(
-                    JsFunctions.ToggleTheme,
-                    value.ToString());
-
-                StateHasChanged();
+                selectedTheme = value;
             }
         }
 
-        protected override async Task OnInitializedAsync()
+        public void ToggleTheme()
         {
-            await JS.InvokeVoidAsync(
-                JsFunctions.ToggleTheme,
-                theme.ToString());
-        }
-
-        public async Task ToggleTheme()
-        {
-            switch (theme)
+            if (SelectedTheme == "light-mode")
             {
-                case Theme.light:
-                    theme = Theme.dark;
-                    break;
-                case Theme.dark:
-                    theme = Theme.light;
-                    break;
-                default:
-                    theme = Theme.light;
-                    break;
+                SelectedTheme = "dark-mode";
+
+                return;
             }
 
-            await JS.InvokeVoidAsync(
-                JsFunctions.ToggleTheme,
-                theme.ToString());
+            SelectedTheme = "light-mode";
+        }
 
-                StateHasChanged();
+        public bool IsSelectedTheme(string theme)
+        {
+            return theme == SelectedTheme;
         }
     }
-
 }

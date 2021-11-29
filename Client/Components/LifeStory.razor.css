@@ -1,0 +1,17 @@
+﻿.story {
+    background:var(--background);
+    color:var(--font-color);
+    opacity:100;
+}
+
+.title {
+    color:var(--accent);
+}
+
+.modal {
+    fill-opacity:100;
+}
+
+.modal-overlay {
+    
+}

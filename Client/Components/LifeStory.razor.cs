@@ -6,6 +6,9 @@ namespace BlazorApp.Client.Components
     public partial class LifeStory : ComponentBase
     {
         [CascadingParameter]
+        public AppState AppState { get; set; }
+
+        [CascadingParameter]
         public BlazoredModalInstance?
             ModalInstance { get; set; }
 

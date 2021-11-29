@@ -1,6 +1,7 @@
-﻿<div class="modal-default">
-    <h1>@Title</h1>
-    <MarkdownView FromUrl=@FilePath />
+﻿<div class="story">
+    <h1 class="title">@Title</h1>
+    <MarkdownView 
+        FromUrl=@FilePath/>
     @if (ModalInstance != null)
     {
         <button @onclick=Close class="btn btn-lg btn-outline-primary" style="float:right">Close</button>

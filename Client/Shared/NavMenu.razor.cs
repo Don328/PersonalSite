@@ -8,6 +8,9 @@ namespace BlazorApp.Client.Shared
 {
     public partial class NavMenu : ComponentBase
     {
+        [CascadingParameter]
+        public AppState AppState { get; set; }
+
         [CascadingParameter] public IModalService? Modal { get; set; }
 
         private bool collapseNavMenu = true;
@@ -24,7 +27,7 @@ namespace BlazorApp.Client.Shared
             get
             {
                 return ModalOptionsFactory
-                    .GetOptions(ModalTypes.Scrollable);
+                    .GetOptions(ModalTypes.Scrollable, AppState);
             }
         }
     }

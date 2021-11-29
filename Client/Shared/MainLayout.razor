@@ -2,17 +2,17 @@
 @using BlazorApp.Client.Utils.Constants
 @inherits LayoutComponentBase
 
-<div class="page @selectedTheme">
+<div class="page @AppState.SelectedTheme">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
-            <select @onchange=ToggleTheme style="margin-left:1rem">
+            <select @onchange=AppState.ToggleTheme style="margin-left:1rem">
                 @foreach (var theme in themes)
                 {
-                   <option selected=@IsSelectedTheme(theme) value=@theme>@theme.ToString()</option> 
+                   <option selected=@AppState.IsSelectedTheme(theme) value=@theme>@theme.ToString()</option> 
                 }
             </select>
 
