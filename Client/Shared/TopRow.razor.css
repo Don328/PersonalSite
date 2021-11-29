@@ -14,7 +14,8 @@
     border-radius:1em;
     background:var(--highlight);
     color:var(--background);
-    padding-left:.5em;
-    padding-right:.5em;
-    border-width:.2em;
+    padding:.5em;
+    padding-top:.35em;
+    padding-bottom:.35em;
+    border-width:0;
 }
