@@ -1,19 +1,4 @@
-﻿.story {
-    background:var(--background);
-    color:var(--font-color);
-    padding:3em;
-    padding-left:5em;
-    padding-right:5em;
-}
-
-.title {
+﻿.title {
     color:var(--font-color);
 }
 
-.modal {
-    fill-opacity:100;
-}
-
-.modal-overlay {
-    
-}

@@ -1,4 +1,5 @@
-﻿using BlazorApp.Client.Utils;
+﻿using BlazorApp.Client.Components;
+using BlazorApp.Client.Utils;
 using BlazorApp.Client.Utils.Enums;
 using Blazored.Modal;
 using Blazored.Modal.Services;
@@ -8,19 +9,21 @@ namespace BlazorApp.Client.Shared
 {
     public partial class TopRow : ComponentBase
     {
+        private ModalOptions modalOpts = new();
+
         [CascadingParameter]
         public AppState AppState { get; set; }
 
         [CascadingParameter]
         public IModalService Modal { get; set; }
 
-        private ModalOptions ModalOpts
+        private void ShowModal()
         {
-            get
-            {
-                return ModalOptionsFactory
-                    .GetOptions(ModalTypes.Scrollable, AppState);
-            }
+            modalOpts = ModalOptionsFactory.GetOptions(
+                ModalTypes.Scrollable,
+                AppState);
+
+            Modal.Show<About>(string.Empty, modalOpts);
         }
     }
 

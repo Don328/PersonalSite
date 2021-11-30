@@ -160,7 +160,29 @@ main .content {
 
 /* Modals */
 
-.modal-default {
+.modal-content {
+    background: var(--background);
+    color: var(--font-color);
+    float:right;
+    margin-right:5%;
+
+}
+* .modal-overlay {
+    visibility:visible;
+    background:red;
+
+}
+
+.blazored-modal-close {
+    color:orangered;
+
+}
+
+.blazored-modal-close .span {
+    font-size:40pt;
+}
+
+/*.modal-default {
     background-color:var(--background);
     color:var(--font-color);
     float:none;
@@ -179,7 +201,7 @@ main .content {
         background-color:var(--highlight);
         padding:.5em;
         float:right;
-    }
+    }*/
 
 @media (max-width:479px) {
     html, body {
@@ -190,6 +212,13 @@ main .content {
         height: 100%;
         background: var(--background);
     }
+
+    .modal-content {
+        padding: 1em;
+        padding-left: .5em;
+        padding-right: .5em;
+        max-width:90%;
+    }
 }
 
 @media (min-width:480px) {
@@ -197,12 +226,25 @@ main .content {
         font-size: 14pt;
         background:var(--background);
     }
-
+    .modal-content {
+        padding: 1.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        max-width:90%;
+    }
 }
 
 @media (min-width:768px) {
     html, body {
         font-size: 16pt;
+    }
+
+    .modal-content {
+        padding: 2em;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        width:80%;
+        max-width:700px;
     }
 }
 
@@ -210,10 +252,26 @@ main .content {
     html, body {
         font-size: 18pt;
     }
+
+    .modal-content {
+        padding: 2.5em;
+        padding-left: 2em;
+        padding-right: 2em;
+        width:80%;
+        max-width:800px;
+    }
 }
 
 @media (min-width:1200px) {
    html, body {
         font-size:20pt;
+    }
+
+    .modal-content {
+        padding: 3em;
+        padding-left: 2.5em;
+        padding-right: 2.5em;
+        width:80%;
+        max-width:1000px;
     }
 }

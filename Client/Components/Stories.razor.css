@@ -1,25 +1,29 @@
 ﻿
 
 .card {
-    background:var(--highlight);
+    background:var(--background);
     margin:2em;
-    padding:2em;
+    padding:1em;
     max-width:80%;
-
+    border-color:var(--accent);
+    border-width:.1em;
+    border-radius:.4em;
 }
 
 .card-header {
-    opacity:50%;
+    float:left;
+    min-width:50%;
+    opacity:65%;
+    border-radius:.4em;
     background-image: linear-gradient(90deg, var(--highlight) 10%, var(--accent) 75%);
 }
 
 .title {
-    color:var(--link-secondary);
+    color:var(--background);
     flex-wrap:nowrap;
 }
 
 @media (min-width:641px) {
-/*    .card {
-        max-width:50%;*/
+
     }
 }

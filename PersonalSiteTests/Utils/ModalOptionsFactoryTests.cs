@@ -1,3 +1,4 @@
+using BlazorApp.Client;
 using BlazorApp.Client.Utils;
 using BlazorApp.Client.Utils.Enums;
 using Blazored.Modal;
@@ -6,13 +7,15 @@ using Xunit;
 
 public class ModalOptionsFactoryTests
 {
+    private AppState appState = new AppState();
+
     [Fact]
     public void TestGetOptions_Null()
     {
         // Tests are grouped here because null is not normally used
         // Passing null should return a default options object
 
-        var options = ModalOptionsFactory.GetOptions(null);
+        var options = ModalOptionsFactory.GetOptions(null, appState);
 
         Assert.True(options.Position == ModalPosition.Center);
         Assert.True(options.Animation.Duration == ModalOptionsFactory.fadeTimer);
@@ -27,7 +30,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Default;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.True(options.Position == ModalPosition.Center);
     }
@@ -37,7 +40,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Default;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.True(options.Animation.Duration == ModalOptionsFactory.fadeTimer);
     }
@@ -47,7 +50,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Default;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.False(options.HideHeader ?? false);
     }
@@ -57,7 +60,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Default;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.False(options.ContentScrollable ?? false);
     }
@@ -67,7 +70,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Default;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.False(options.DisableBackgroundCancel ?? false);
     }
@@ -77,7 +80,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Default;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.False(options.HideCloseButton ?? false);
     }
@@ -87,7 +90,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Scrollable;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.True(options.Position == ModalPosition.Center);
     }
@@ -97,7 +100,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Scrollable;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.True(options.Animation.Duration == ModalOptionsFactory.fadeTimer);
     }
@@ -107,7 +110,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Scrollable;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.True(options.ContentScrollable);
     }
@@ -117,7 +120,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Scrollable;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.False(options.HideHeader ?? false);
     }
@@ -127,7 +130,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Scrollable;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.False(options.HideCloseButton ?? false);
     }
@@ -137,7 +140,7 @@ public class ModalOptionsFactoryTests
     {
         var type = ModalTypes.Scrollable;
 
-        var options = ModalOptionsFactory.GetOptions(type);
+        var options = ModalOptionsFactory.GetOptions(type, appState);
 
         Assert.False(options.DisableBackgroundCancel ?? false);
     }
