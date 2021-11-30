@@ -1,18 +1,22 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    
-    <div class="row">
-        <div class="col-auto">
+﻿<div class="ps-3 navbar navbar-dark">
+
+    <div class="row top-row">
+        <div class="col">
             <a class="navbar-brand home-link" href="">Donavan Olsen</a>
         </div>
         <div class="col-auto">
-            <div class="sm-screen-only">
-                <TopRow />
+            <div class="row">
+                <div class="col-auto">
+                    <div class="sm-screen-only" style="float:right;">
+                        <TopRow />
+                    </div>
+                </div>
+                <div class="col">
+                    <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="col" style="float:right">
-            <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </div>
     </div>
 </div>
