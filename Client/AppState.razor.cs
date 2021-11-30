@@ -8,7 +8,10 @@ namespace BlazorApp.Client
     public partial class AppState : ComponentBase
     {
         private string selectedTheme { get; set; }
-            = "light-mode";
+            = ThemeOptions.liteMode;
+
+        [Inject]
+        public IJSInProcessRuntime JS { get; set; }
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
@@ -23,19 +26,37 @@ namespace BlazorApp.Client
             private set
             {
                 selectedTheme = value;
+                JS.InvokeVoid(
+                    JsFunctions.SetSessionStorage,
+                    nameof(selectedTheme),
+                    value);
+                StateHasChanged();
             }
+        }
+
+        protected override void OnInitialized()
+        {
+            var option = JS.Invoke<string>(
+                JsFunctions.GetSessionStorage,
+                nameof(selectedTheme));
+            if (string.IsNullOrEmpty(option))
+            {
+                option = ThemeOptions.liteMode;
+            }
+
+            selectedTheme = option;
         }
 
         public void ToggleTheme()
         {
-            if (SelectedTheme == "light-mode")
+            if (SelectedTheme == ThemeOptions.liteMode)
             {
-                SelectedTheme = "dark-mode";
+                SelectedTheme = ThemeOptions.darkMode;
 
                 return;
             }
 
-            SelectedTheme = "light-mode";
+            SelectedTheme = ThemeOptions.liteMode;
         }
 
         public bool IsSelectedTheme(string theme)

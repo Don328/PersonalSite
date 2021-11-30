@@ -3,9 +3,12 @@
 
     public static class ThemeOptions
     {
+        public const string liteMode = "light-mode";
+        public const string darkMode = "dark-mode";
+
         private static readonly List<string> themes 
             = new List<string>()
-            { "light-mode", "dark-mode" };
+            { liteMode, darkMode };
 
         public static List<string> Themes 
         { 
@@ -14,7 +17,7 @@
                 return themes;
             }
         }
-            
+
 
     }
 }
