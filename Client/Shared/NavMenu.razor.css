@@ -1,14 +1,14 @@
 .navbar-toggler {
     background-color: var(--accent);
     float:right;
-    margin-right:.25em;
-    margin-top:.25em;
+
 }
 
 .top-row {
     height: 3.5rem;
     width:100%;
     flex-direction:row;
+    align-items:center;
 }
 
 .navbar-brand {
