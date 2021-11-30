@@ -8,19 +8,21 @@ namespace BlazorApp.Client.Shared
 {
     public partial class TopRow : ComponentBase
     {
+        private ModalOptions modalOpts = new();
+
         [CascadingParameter]
         public AppState AppState { get; set; }
 
         [CascadingParameter]
         public IModalService Modal { get; set; }
 
-        private ModalOptions ModalOpts
+        protected override async Task OnInitializedAsync()
         {
-            get
-            {
-                return ModalOptionsFactory
-                    .GetOptions(ModalTypes.Scrollable, AppState);
-            }
+            modalOpts = ModalOptionsFactory.GetOptions(
+                ModalTypes.Scrollable,
+                AppState);
+
+            await base.OnInitializedAsync();
         }
     }
 

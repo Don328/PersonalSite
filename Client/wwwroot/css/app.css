@@ -160,7 +160,14 @@ main .content {
 
 /* Modals */
 
-.modal-default {
+* .modal {
+    background:var(--background);
+}
+* .modal-overlay {
+    background:var(--background);
+}
+
+/*.modal-default {
     background-color:var(--background);
     color:var(--font-color);
     float:none;
@@ -179,7 +186,7 @@ main .content {
         background-color:var(--highlight);
         padding:.5em;
         float:right;
-    }
+    }*/
 
 @media (max-width:479px) {
     html, body {
