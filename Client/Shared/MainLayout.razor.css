@@ -10,6 +10,7 @@ main {
 
 .sidebar {
     background-image: linear-gradient(180deg, var(--background) 25%, var(--accent) 99.99%);
+    overflow:hidden;
 }
 
 .top-row {
@@ -35,8 +36,11 @@ main {
         text-overflow: ellipsis;
     }
 
-@media (max-width: 479px) {
-
+@media (max-width: 480px) {
+    .sidebar {
+        max-width:479px;
+        
+    }
 }
 
 @media (max-width: 767px) {
