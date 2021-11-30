@@ -201,8 +201,9 @@ a, .btn-link {
 
     .content {
         height: 100%;
-        overflow-y:visible;
+        overflow-y:scroll;
         position:fixed;
+        scroll-behavior:smooth;
         background:var(--background);
     }
 }
