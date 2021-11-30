@@ -5,6 +5,7 @@
     border-width:.1em;
     border-radius:.5em;
     padding:.25em;
+    margin:0;
 }
 
 .about-button {
@@ -16,4 +17,5 @@
     padding-top:.35em;
     padding-bottom:.35em;
     border-width:0;
+    margin:0;
 }
