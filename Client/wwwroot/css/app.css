@@ -18,14 +18,21 @@
     --link-secondary: #454748;
 }
 
+html, body:before {
+
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size:16pt;
+    height:100%;
 }
 
+
 .page {
-    background:var(--background);
-    color:var(--font-color);
+    color: var(--font-color);
+    background: var(--background);
+
 }
 
 
@@ -177,11 +184,27 @@ a, .btn-link {
     html, body {
         font-size: 12pt;
     }
+
+    .content {
+        height: 100%;
+        overflow-y: visible;
+        position: fixed;
+        background: var(--background);
+    }
 }
 
 @media (min-width:480px) {
     html, body {
         font-size: 14pt;
+        background:var(--background);
+    }
+
+    .content {
+        height: 100%;
+        overflow-y:scroll;
+        position:fixed;
+        scroll-behavior:smooth;
+        background:var(--background);
     }
 }
 
