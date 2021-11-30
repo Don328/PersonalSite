@@ -2,8 +2,16 @@
 {
     public static class JsFunctions
     {
-        private const string Prefix = "theme";
+        // js function constants for theme toggle
+        private const string ThemeTogglePrefix = "theme";
+        public const string ToggleTheme =
+            $"{ThemeTogglePrefix}.toggle";
 
-        public const string ToggleTheme = $"{Prefix}.toggle";
+        // js function constants for session store
+        private const string SessionStorePrefix = "stateStore";
+        public const string GetSessionStorage =
+            $"{SessionStorePrefix}.getSessionStorage";
+        public const string SetSessionStorage =
+            $"{SessionStorePrefix}.setSessionStorage";
     }
 }
