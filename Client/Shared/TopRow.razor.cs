@@ -1,4 +1,5 @@
-﻿using BlazorApp.Client.Utils;
+﻿using BlazorApp.Client.Components;
+using BlazorApp.Client.Utils;
 using BlazorApp.Client.Utils.Enums;
 using Blazored.Modal;
 using Blazored.Modal.Services;
@@ -16,13 +17,13 @@ namespace BlazorApp.Client.Shared
         [CascadingParameter]
         public IModalService Modal { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        private void ShowModal()
         {
             modalOpts = ModalOptionsFactory.GetOptions(
                 ModalTypes.Scrollable,
                 AppState);
 
-            await base.OnInitializedAsync();
+            Modal.Show<About>(string.Empty, modalOpts);
         }
     }
 
