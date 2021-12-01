@@ -48,11 +48,13 @@ I had flown dozens of hours with Ross and never had any doubts about his abiliti
 
 (Until he was on a check ride.)
 
-Ross has a bad case of what we used to call check-ride-itis. As soon as an IP was in the cockpit with him, his brain went to jelly.
+Ross had a bad case of what we called check-ride-itis. As soon as an IP was in the cockpit with him, his brain went to jelly.
 
 It didn't help that Sam had a well-earned reputation for being difficult to please, and that flight was no exception.
 
-By the time we were on our approach into BIOP (remember, we were about to have a mid-air collision?), we had been flying for a couple of hours. Sam had been leaning into Ross the whole time. Before we had even made the call to request clearance, the tension in the helicopter was noticeable.
+By the time we were on our approach into BIOP (remember, we were about to have a mid-air collision?), we had been flying for a couple of hours. We had been shot at. Pretty close actually. Closer than "normal."
+
+Sam had been leaning into Ross the whole time. Before we had even made the call to request clearance, the tension in the helicopter was noticeable.
 
 ---
 My usual in-flight duty position kept me sitting, rear-facing on the end of the cargo ramp. When I heard those words come across the radio, I spun my head around. I looked down the side of the fuselage, down at where they were parked. I watched them lift off and turn as they ascended, making a path that seemed intent on intercepting ours. I stood up and turned around, looking inside the helicopter through thirty feet of an empty cabin.
@@ -126,4 +128,4 @@ I didn't want that. I sat back down with Sam and with Ross, and then with both o
 
 So that's what we did. I can't say that no one ever found out about it. Everyone in our Company knew within a day or so. But no one who might make the situation worse ever caught wind.
 
-I don't think Ross and Sam ever became good friends or anything, but they both got over it. Ross ended up passing a check ride not long after and continued a distinguished career. Sam did as well, at one point being the highest-ranking warrant officer in the entire US Army.
+I don't think Ross and Sam ever became good friends or anything, but they both got over it. Ross ended up passing a check ride not long after and continued a distinguished career. Sam did as well, at one point becomming highest-ranking warrant officer in the entire US Army.
