@@ -183,26 +183,28 @@ main .content {
     font-size:40pt;
 }
 
-/*.modal-default {
-    background-color:var(--background);
+.project-card {
     color:var(--font-color);
-    float:none;
-    padding:5em;
-    word-wrap:break-word;
-    outline-color:transparent;
-    max-width:90%;
-    max-height:90%;
-    border:5px;
-    border-collapse:collapse;
-    border-block-width:0;
-    
+    background:var(--background);
+    border-color:var(--accent);
+    border-width:.2em;
+    border-radius:1em;
 }
-    .modal-default .accent-text {
-        color:var(--accent);
-        background-color:var(--highlight);
-        padding:.5em;
-        float:right;
-    }*/
+
+.project-card .card-header {
+    background:var(--background);
+    color:var(--highlight);
+    border-bottom-color:var(--accent);
+    border-width:.15em;
+    border-top-left-radius:1em;
+    border-top-right-radius:1em;
+}
+
+    .project-card a {
+        color: var(--link);
+            
+        
+    }
 
 @media (max-width:479px) {
     html, body {
