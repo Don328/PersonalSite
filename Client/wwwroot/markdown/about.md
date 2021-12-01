@@ -1,5 +1,4 @@
-﻿---
-- This website is written in C#, running in the browser using .Net Blazor web assembly. Its running as a static web app, served on Azure.
+﻿- This website is written in C#, running in the browser using .Net Blazor web assembly. Its running as a static web app, served on Azure.
 
 - The codebase is [hosted on github](https://github.com/Don328/PersonalSite.git) and is published to Azure using github actions for continuous delivery.
 
