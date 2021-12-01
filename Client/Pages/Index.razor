@@ -13,6 +13,9 @@
 </div>
 
 @code {
+    [CascadingParameter]
+    public AppState AppState { get; set; }
+
     [CascadingParameter] public IModalService? Modal { get; set; }
 
     private ModalOptions modalOptions = new()
@@ -21,4 +24,14 @@
             Animation = ModalAnimation.FadeInOut(1),
             HideHeader = true
         };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AppState.AcceptedTOS)
+        {
+            Modal.Show<GDPRNotice>();
+        }
+        
+        await Task.CompletedTask;
+    }
 }
