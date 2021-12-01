@@ -1,6 +1,4 @@
-﻿---
-
-I had been out of the army for a little over a year. I was working as an aircraft mechanic, doing routine inspections and maintainence. I wasn't happy.
+﻿I had been out of the army for a little over a year. I was working as an aircraft mechanic, doing routine inspections and maintainence. I wasn't happy.
 
 A close friend of mine was moving to Pheonix. A former co-worker of his had been trying to convince him to move down there for some time. He was making pretty good money and Ian a wanted a piece of it. So did I.
 

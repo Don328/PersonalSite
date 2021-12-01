@@ -1,8 +1,6 @@
-?---
-
 You get used to the sounds of the different radios after a few hundred flight hours. You can tell, just by the background noise, the static, exactly which radio the little voice in your head is coming through over.
 
-"We can make it" It was the UHF; The "uniform" radio, so-called because of its use of the letter 'U' at the beginning of its name. The UHF was one of the radios used primarily to talk to tower (air traffic control).
+"We can make it" It was the UHF; The "uniform" radio, so-called because of its use of the letter 'U' at the beginning of its name: Ultra High Frequency. The UHF was one of the radios used primarily to talk to tower (air traffic control).
 
 The voice belonged to an anonymous pilot of a MH53 helicopter. There were two of them sitting on the ground in the area known as the ramp.
 

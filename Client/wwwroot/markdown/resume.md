@@ -1,4 +1,4 @@
-?# Resumé
+# Resume
 Donavan Olsen
 contact: [donavan.olsen@gmail.com](mailto:donavan.olsen@gmail.com)
 

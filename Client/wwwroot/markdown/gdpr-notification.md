@@ -1,4 +1,4 @@
-?This site uses cookies to track the following items:
+This site uses cookies to track the following items:
 - selected color theme
 - GDPR notification acceptance (this form)
 
