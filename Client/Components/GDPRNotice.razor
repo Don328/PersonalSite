@@ -1,5 +1,19 @@
-﻿<h3>GDPRNotice</h3>
+﻿<div class="modal-content">
+    <h1>About this Website</h1>
+    <MarkdownView FromUrl="/markdown/gdpr-notification.md" />
+    @if(ModalInstance != null)
+    {
+        <button @onclick=Accept class="btn btn-lg btn-outline-primary" style="float:right">Close</button>
+    }
+</div>
 
 @code {
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
 
+
+    async void Accept()
+    {
+        await ModalInstance.CloseAsync();
+    }
 }
