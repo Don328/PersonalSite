@@ -88,7 +88,7 @@ namespace BlazorApp.Client
                 nameof(acceptedTOS));
 
             if (string.IsNullOrEmpty(accepted) ||
-                accepted.CompareTo("true") != 0)
+                accepted.CompareTo("True") != 0)
             {
                 acceptedTOS = false;
             }
