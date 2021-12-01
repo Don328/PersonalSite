@@ -1,0 +1,19 @@
+﻿<h1 style="margin-left:35%;">Cookie Policy</h1>
+<div class="modal-content">
+    <MarkdownView FromUrl="/markdown/gdpr-notification.md" />
+    @if(ModalInstance != null)
+    {
+        <button @onclick=Accept class="btn btn-lg btn-outline-primary" style="float:right">Close</button>
+    }
+</div>
+
+@code {
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+
+    async void Accept()
+    {
+        await ModalInstance.CloseAsync();
+    }
+}

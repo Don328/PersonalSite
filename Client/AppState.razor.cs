@@ -7,8 +7,10 @@ namespace BlazorApp.Client
 {
     public partial class AppState : ComponentBase
     {
-        private string selectedTheme { get; set; }
+        private string selectedTheme 
             = ThemeOptions.liteMode;
+
+        private bool acceptedTOS = false;
 
         [Inject]
         public IJSInProcessRuntime JS { get; set; }
@@ -26,15 +28,47 @@ namespace BlazorApp.Client
             private set
             {
                 selectedTheme = value;
-                JS.InvokeVoid(
-                    JsFunctions.SetSessionStorage,
-                    nameof(selectedTheme),
-                    value);
-                StateHasChanged();
+                SaveSelectedTheme(value);
+            }
+        }
+
+        public bool AcceptedTOS 
+        { 
+            get
+            {
+                return acceptedTOS;
+            }
+            set
+            {
+                acceptedTOS = value;
+                SaveTOSAcceptance(value);
             }
         }
 
         protected override void OnInitialized()
+        {
+            GetSelectedTheme();
+            GetTOSAcceptance();
+        }
+
+        private void SaveSelectedTheme(string value)
+        {
+            JS.InvokeVoid(
+                JsFunctions.SetSessionStorage,
+                nameof(selectedTheme),
+                value);
+            StateHasChanged();
+        }
+
+        private void SaveTOSAcceptance(bool value)
+        {
+            JS.InvokeVoid(
+                JsFunctions.SetSessionStorage,
+                nameof(acceptedTOS),
+                value.ToString());
+        }
+
+        private void GetSelectedTheme()
         {
             var option = JS.Invoke<string>(
                 JsFunctions.GetSessionStorage,
@@ -45,6 +79,19 @@ namespace BlazorApp.Client
             }
 
             selectedTheme = option;
+        }
+
+        private void GetTOSAcceptance()
+        {
+            var accepted = JS.Invoke<string>(
+                JsFunctions.GetSessionStorage,
+                nameof(acceptedTOS));
+
+            if (string.IsNullOrEmpty(accepted) ||
+                accepted.CompareTo("True") != 0)
+            {
+                acceptedTOS = false;
+            }
         }
 
         public void ToggleTheme()

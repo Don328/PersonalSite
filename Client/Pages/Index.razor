@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager NavMan;
 
 <PageTitle>Donavan Olsen</PageTitle>
 <MarkdownView FromUrl="/markdown/welcome.md" />
@@ -13,6 +14,9 @@
 </div>
 
 @code {
+    [CascadingParameter]
+    public AppState AppState { get; set; }
+
     [CascadingParameter] public IModalService? Modal { get; set; }
 
     private ModalOptions modalOptions = new()
@@ -21,4 +25,41 @@
             Animation = ModalAnimation.FadeInOut(1),
             HideHeader = true
         };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AppState.AcceptedTOS)
+        {
+            var accepted = await ShowGDPRNotification();
+            if (accepted)
+            {
+                AppState.AcceptedTOS = true;
+            }
+
+            NavMan.NavigateTo("/");
+        }
+
+
+
+        await Task.CompletedTask;
+    }
+
+    private async Task<bool> ShowGDPRNotification()
+    {
+        bool accepted;
+
+        var gdpr = Modal.Show<GDPRNotice>();
+        var result = await gdpr.Result;
+
+        if (result.Cancelled)
+        {
+            accepted = false;
+        }
+        else
+        {
+            accepted = true;
+        }
+
+        return await Task.FromResult(accepted);
+    }
 }
