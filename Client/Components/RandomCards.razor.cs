@@ -11,6 +11,7 @@ namespace BlazorApp.Client.Components
         protected override async Task OnInitializedAsync()
         {
             deck = new Deck(DeckType.Shuffled);
+
             await Task.CompletedTask;
         }
     }
