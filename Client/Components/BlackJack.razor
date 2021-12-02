@@ -1,8 +1,8 @@
 ﻿<h3>BlackJack</h3>
 Bank: @playerBank
 
-<EditForm Model=wager>
-    <InputNumber @bind-Value=wager />
+<EditForm Model=this>
+    <InputNumber @bind-Value=wager/>
     <button type="submit" @onclick=Deal>Deal</button>
 </EditForm>
 @message
@@ -12,27 +12,38 @@ Bank: @playerBank
         <h5>Player</h5>
         @foreach (var card in playerHand)
         {
-            <PlayingCard Card=card/>
+            <PlayingCard Card=card />
         }
+        <div class="row">
+            <h5>Player total: </h5>
+            @playerHandValue
+        </div>
     </div>
     <div class="col">
         <h5>Dealer</h5>
+        
         @if (handIsActive)
         {
-            @for (int i = 0; i < dealerHand.Count; i++)
+            @foreach (var card in GetDealerShow(dealerHand))
             {
-                if (i>0)
-                {
-                    <PlayingCard Card=dealerHand[i] />
-                }
+                <PlayingCard Card=card />
             }
+            <div class="row">
+                <h5>Dealer total:</h5>
+                @dealerShowValue
+            </div>        
         }
-        else
+        
+        @if (!handIsActive)
         {
-            @foreach(var card in dealerHand)
+            @foreach (var card in dealerHand)
             {
-                <PlayingCard Card=card/>
+                <PlayingCard Card=card />
             }
+            <div class="row">
+                <h5>Dealer total:</h5>
+                @dealerHandValue
+            </div>
         }
     </div>
 </div>
