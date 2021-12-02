@@ -1,17 +1,22 @@
 ﻿using AlgoCards.Enums;
 using AlgoCards.Models;
+using BlazorApp.Client.Utils.Enums;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Client.Pages
 {
     public partial class CardGames : ComponentBase
     {
-        private Deck deck = new();
+        private CardGameType GameType { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        private void ShowRandomCards()
         {
-            deck = new Deck(DeckType.Shuffled);
-            await Task.CompletedTask;
+            GameType = CardGameType.Random; 
+        }
+        
+        private void ShowBlackJack()
+        {
+            GameType = CardGameType.Blackjack;
         }
     }
 }

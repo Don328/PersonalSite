@@ -1,12 +1,22 @@
 ﻿@page "/card-games"
 
+@using BlazorApp.Client.Utils.Enums
 
-
-
-
-<div class="row" style="width:100%;">
-        @foreach (var card in deck.Cards)
-        {
-            <PlayingCard Card=card />
-        }
+<div class="row">
+    <div class="col">
+        <button class="btn" @onclick=ShowRandomCards>Random Cards</button>
     </div>
+    <div class="col">
+        <button class="btn" @onclick=ShowBlackJack>Black Jack</button>
+    </div>
+</div>
+
+@if (GameType == CardGameType.Random)
+{
+    <RandomCards />
+}
+
+@if (GameType == CardGameType.Blackjack)
+{
+    <BlackJack />
+}
