@@ -1,11 +1,12 @@
-﻿<h3>BlackJack</h3>
+﻿@using BlazorApp.Client.Utils.Enums
+<h3>BlackJack</h3>
 Bank: @playerBank
 
 <EditForm Model=this>
     <InputNumber @bind-Value=wager/>
     <button type="submit" @onclick=Deal>Deal</button>
 </EditForm>
-@message
+
 
 <div class="row">
     <div class="col">
@@ -47,10 +48,30 @@ Bank: @playerBank
         }
     </div>
 </div>
+<h4>@dealerMessage</h4>
 @if (handIsActive)
 {
-    <div class="row">
-        <button class="btn" @onclick=EndHand>EndHand</button>
-    </div>
+    @foreach(var opt in playerActions)
+    {
+        if (opt == BlackJackPlayerActions.Stay)
+        {
+            <button class="btn" @onclick=PlayerStays>Stay</button>
+        }
+
+        if (opt == BlackJackPlayerActions.Hit)
+        {
+            <button class="btn" @onclick=PlayerHits>Hit</button>
+        }
+
+        if (opt == BlackJackPlayerActions.DoubleDown)
+        {
+            <button class="btn" @onclick=PlayerDoubles>Double Down</button>
+        }
+
+@*        if (opt == BlackJackPlayerActions.Split)
+        {
+            <button class="btn" @onclick=PlayerSplits>Split</button>
+        }*@
+    }
 }
 
