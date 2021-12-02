@@ -6,56 +6,7 @@
 <div class="row" style="width:100%;">
         @foreach (var card in deck.Cards)
         {
-            <div class="card" style="max-width:10em; background:whitesmoke; color:gray; margin:1em;">
-                <div class="card-header" style="background:transparent;border:none;">
-                    <div class="row">
-                        <div class="col" style="max-width:7em;padding-right:0;">
-                                @if (card.CardValue > 1
-                                    && card.CardValue < 11)
-                                {
-                                    <h1>@card.CardValue</h1>
-                                }
-                                @if (card.CardValue == 0)
-                            {
-                                <h1>JK</h1>
-                            }
-                            @if (card.CardValue > 10 ||
-                                card.CardValue == 1)
-                            {
-                                <h1>@card.Index.ToString()[1].ToString()</h1>
-                            }
-                        </div>
-                        <div class="col" style="max-width:3em;padding-left:0;margin-top:.5em;">
-                            @if (card.Suit.CompareTo(CardSuit.hearts) == 0)
-                            {
-                                <image src="assets/icons/heart.png" style="max-width:2.5em;max-height:2.5em;"></image>   
-                            }
-                            @if (card.Suit.CompareTo(CardSuit.spades) == 0)
-                            {
-                                <image src="assets/icons/spade.png" style="max-width:2.5em;max-height:2.5em;"></image>   
-                            }
-                            @if (card.Suit.CompareTo(CardSuit.diamonds) == 0)
-                            {
-                                <image src="assets/icons/diamond.png" style="max-width:2.5em;max-height:2.5em;"></image>   
-                            }
-                            @if (card.Suit.CompareTo(CardSuit.clubs) == 0)
-                            {
-                                <image src="assets/icons/club.png" style="max-width:2.5em;max-height:2.5em;"></image>   
-                            }
-                            @if (card.Suit.CompareTo(CardSuit.joker) == 0)
-                            {
-                                <i class="fa-solid fa-skull-crossbones"></i>    
-                            }
-                        </div>
-                    </div>
-                </div>
-@*                <div class="card-body">
-                    <div class="row">@card.Rank</div>
-                    <div class="row">@card.Suit</div>
-                    <div class="row">@card.ToString()</div>
-                    <div class="row">Index: @card.Index | @((int)card.Index)</div>
-                </div>*@
-            </div>
+            <PlayingCard Card=card />
         }
     </div>
 
