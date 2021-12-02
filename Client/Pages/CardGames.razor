@@ -1,7 +1,8 @@
 ﻿@page "/card-games"
-@using AlgoCards.Constants
-@using AlgoCards.Enums
-@using AlgoCards.Models
+
+
+
+
 
 <div class="row" style="width:100%;">
         @foreach (var card in deck.Cards)
@@ -9,14 +10,3 @@
             <PlayingCard Card=card />
         }
     </div>
-
-
-@code {
-    private Deck deck = new();
-
-    protected override async Task OnInitializedAsync()
-    {
-        deck = new Deck(DeckType.Shuffled);
-        await Task.CompletedTask;
-    }
-}
