@@ -1,5 +1,5 @@
 ﻿@using AlgoCards.Constants
-<div class="card" style="max-width:10em; background:whitesmoke; color:gray; margin:1em;">
+<div class="card" style="max-width:10em; background:whitesmoke; color:gray; margin:1em; border-radius:.5em;">
                 <div class="card-header" style="background:transparent;border:none;">
                     <div class="row">
                         <div class="col" style="max-width:7em;padding-right:0;">
@@ -18,7 +18,7 @@
                                 <h1>@Card.Index.ToString()[1].ToString()</h1>
                             }
                         </div>
-                        <div class="col" style="max-width:3em;padding-left:0;margin-top:.5em;">
+                        <div class="col" style="max-width:3em;padding-left:0;">
                             @if (Card.Suit.CompareTo(CardSuit.hearts) == 0)
                             {
                                 <image src="assets/icons/heart.png" style="max-width:2.5em;max-height:2.5em;"></image>   

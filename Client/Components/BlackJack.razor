@@ -55,22 +55,22 @@ Bank: @playerBank
     {
         if (opt == BlackJackPlayerActions.Stay)
         {
-            <button class="btn" @onclick=PlayerStays>Stay</button>
+            <button class="btn btn-lg" style="margin:1em; background:green" @onclick=PlayerStays>Stay</button>
         }
 
         if (opt == BlackJackPlayerActions.Hit)
         {
-            <button class="btn" @onclick=PlayerHits>Hit</button>
+            <button class="btn btn-lg" style="margin:1em; background:orange" @onclick=PlayerHits>Hit</button>
         }
 
         if (opt == BlackJackPlayerActions.DoubleDown)
         {
-            <button class="btn" @onclick=PlayerDoubles>Double Down</button>
+            <button class="btn btn-lg" style="margin:1em; background:orangered" @onclick=PlayerDoubles>Double Down</button>
         }
 
 @*        if (opt == BlackJackPlayerActions.Split)
         {
-            <button class="btn" @onclick=PlayerSplits>Split</button>
+            <button class="btn btn-lg btn-warning" style="margin:1em;" @onclick=PlayerSplits>Split</button>
         }*@
     }
 }
