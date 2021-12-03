@@ -9,9 +9,9 @@ namespace BlazorApp.Client.Components
     {
         private Deck deck = new();
         private Queue<Card> drawPile = new();
-        private int playerBank = 100;
+        private int playerBank = 0;
         private int handWager = 0;
-        private int playerWager = 5;
+        private int playerWager = 0;
         private bool handIsActive = false;
         private List<Card> playerHand = new();
         private List<Card> dealerHand = new();
@@ -24,8 +24,8 @@ namespace BlazorApp.Client.Components
 
         protected override async Task OnInitializedAsync()
         {
-            playerBank = 100;
-            playerWager = 5;
+            playerBank = 200;
+            playerWager = 10;
             await Task.CompletedTask;
         }
 
@@ -40,14 +40,14 @@ namespace BlazorApp.Client.Components
 
         private bool WagerIsValid()
         {
-            if (playerWager < 5)
+            if (playerWager < 10)
             {
-                dealerMessage = "Minimum wager value is 5";
+                dealerMessage = "Minimum wager value is 10";
                 return false;
             }
-            if (playerWager % 5 != 0)
+            if (playerWager % 10 != 0)
             {
-                dealerMessage = "Wager must be in increments of 5";
+                dealerMessage = "Wager must be in increments of 10";
                 return false;
             }
 
@@ -107,7 +107,8 @@ namespace BlazorApp.Client.Components
                 if (playerHandValue == 21)
                 {
                     dealerMessage = "BlackJack!";
-                    playerBank += handWager * 3;
+                    var bonus = (handWager / 10) * 5;
+                    playerBank += (handWager * 2) + bonus;
                     handIsActive = false;
                     return;
                 }
