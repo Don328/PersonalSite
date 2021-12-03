@@ -3,9 +3,9 @@
 Bank: @playerBank
 
 <EditForm Model=this>
-    <InputNumber @bind-Value=playerWager/>
-    <button type="submit" @onclick=Deal>Deal</button>
+    <InputNumber @bind-Value=playerWager />
 </EditForm>
+
 
 
 <div class="row">
@@ -15,43 +15,53 @@ Bank: @playerBank
         {
             <PlayingCard Card=card />
         }
-        <div class="row">
-            <h5>Player total: </h5>
-            @playerHandValue
-        </div>
     </div>
     <div class="col">
         <h5>Dealer</h5>
-        
-        @if (handIsActive)
-        {
-            @foreach (var card in GetDealerShow(dealerHand))
+
+        <div class="row" style="color:var(--accent)">
+            @if (handIsActive)
             {
-                <PlayingCard Card=card />
+                @foreach (var card in GetDealerShow(dealerHand))
+                {
+                    <PlayingCard Card=card />
+                }
             }
-            <div class="row">
-                <h5>Dealer total:</h5>
-                @dealerShowValue
-            </div>        
-        }
-        
-        @if (!handIsActive)
-        {
-            @foreach (var card in dealerHand)
+
+            @if (!handIsActive)
             {
-                <PlayingCard Card=card />
+                @foreach (var card in dealerHand)
+                {
+                    <PlayingCard Card=card />
+                }
             }
-            <div class="row">
-                <h5>Dealer total:</h5>
-                @dealerHandValue
-            </div>
-        }
+        </div>
     </div>
 </div>
+<div class="row" style="color:var(--accent)">
+    @if (playerHandValue > 0)
+    {
+        <h5>Player: @playerHandValue</h5>
+        @if (!handIsActive)
+        {
+            <h5>Dealer: @dealerHandValue</h5>
+        }
+        else
+        {
+            <h5>Dealer: @dealerShowValue</h5>
+
+        }
+
+    }
+</div>
 <h4>@dealerMessage</h4>
+@if (!handIsActive)
+{
+    <button class="btn btn-xl" style="background:Green" @onclick=Deal>Deal</button>
+}
 @if (handIsActive)
 {
-    @foreach(var opt in playerActions)
+    @foreach (var opt in playerActions)
     {
         if (opt == BlackJackPlayerActions.Stay)
         {
@@ -68,10 +78,10 @@ Bank: @playerBank
             <button class="btn btn-lg" style="margin:1em; background:orangered" @onclick=PlayerDoubles>Double Down</button>
         }
 
-@*        if (opt == BlackJackPlayerActions.Split)
-        {
+        @*        if (opt == BlackJackPlayerActions.Split)
+            {
             <button class="btn btn-lg btn-warning" style="margin:1em;" @onclick=PlayerSplits>Split</button>
-        }*@
+            }*@
     }
 }
 
