@@ -1,14 +1,22 @@
 ﻿@using BlazorApp.Client.Utils.Enums
-<h3>BlackJack</h3>
-Bank: @playerBank
-
-<EditForm Model=this>
-    <InputNumber @bind-Value=playerWager />
-</EditForm>
-
-
+<h1>BlackJack</h1>
+<h3>Player Bank: @playerBank</h3>
 
 <div class="row">
+    <div class="col" style="max-width:100px">
+        <h3>Wager: </h3>
+    </div>
+    <div class="col" style="font-size:x-large;">
+        <EditForm Model=this>
+            <InputNumber @bind-Value=playerWager style="max-width:50px"/>
+        </EditForm>
+    </div>
+    <div class="col-auto"></div>
+</div>
+
+
+
+<div class="row" style="margin-top:2em;">
     <div class="col">
         <h5>Player</h5>
         @foreach (var card in playerHand)
@@ -41,17 +49,17 @@ Bank: @playerBank
 <div class="row" style="color:var(--accent)">
     @if (playerHandValue > 0)
     {
-        <h5>Player: @playerHandValue</h5>
+        <h3>Player: @playerHandValue</h3>
         @if (!handIsActive)
         {
-            <h5>Dealer: @dealerHandValue</h5>
+            <h3>Dealer: @dealerHandValue</h3>
         }
         else
         {
-            <h5>Dealer: @dealerShowValue</h5>
+            <h3>Dealer: @dealerShowValue</h3>
 
         }
-
+        <h3>Wager: @handWager</h3>
     }
 </div>
 <h4>@dealerMessage</h4>

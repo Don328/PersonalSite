@@ -72,7 +72,9 @@ namespace BlazorApp.Client.Components
             dealerHand.Add(drawPile.Dequeue());
             playerHand.Add(drawPile.Dequeue());
             dealerHand.Add(drawPile.Dequeue());
+            await Task.Delay(500);
             CalculateDealerHand();
+            await Task.Delay(500);
             CalculateDealerShowValue();
 
             await PlayHand();
@@ -114,7 +116,7 @@ namespace BlazorApp.Client.Components
             switch (playerHandValue)
             {
                 case 21:
-                    DrawDealerHand();
+                    await DrawDealerHand();
                     return;
                 case > 21:
                     dealerMessage = "Player Busted";
@@ -145,35 +147,38 @@ namespace BlazorApp.Client.Components
             return hand.GetRange(1, hand.Count - 1);
         }
 
-        private void PlayerStays()
+        private async Task PlayerStays()
         {
-            DrawDealerHand();
+            await DrawDealerHand();
         }
 
         private async void PlayerHits()
         {
             playerHand.Add(drawPile.Dequeue());
+            await Task.Delay(1000);
             CalculatePlayerHand();
             if (playerHandValue == 21)
             {
-                DrawDealerHand();
+                await DrawDealerHand();
                 return;
             }
             if (playerHandValue > 21)
             {
                 EndHand();
+                return;
             }
 
             await PlayHand();
         }
 
-        private void PlayerDoubles()
+        private async Task PlayerDoubles()
         {
             playerBank -= handWager;
             handWager = handWager * 2;
+            await Task.Delay(500);
             playerHand.Add(drawPile.Dequeue());
             CalculatePlayerHand();
-            DrawDealerHand();
+            await DrawDealerHand();
         }
 
         private void PlayerSplits()
@@ -181,7 +186,7 @@ namespace BlazorApp.Client.Components
 
         }
 
-        private void DrawDealerHand()
+        private async Task DrawDealerHand()
         {
             handIsActive = false;
 
@@ -194,8 +199,8 @@ namespace BlazorApp.Client.Components
                     DealerBusts();
                     return;
                 }
-
-                DrawDealerHand();
+                await Task.Delay(2000);
+                await DrawDealerHand();
             }
 
             if (dealerHandValue == 17)
@@ -210,7 +215,8 @@ namespace BlazorApp.Client.Components
                         return;
                     }
 
-                    DrawDealerHand();
+                    await Task.Delay(1000);
+                    await DrawDealerHand();
                 }
             }
 
@@ -291,6 +297,7 @@ namespace BlazorApp.Client.Components
             {
                 PlayerBusts();
             }
+            StateHasChanged();
         }
 
         private bool IsBusted(int value)
@@ -321,6 +328,7 @@ namespace BlazorApp.Client.Components
         {
             dealerHandValue = 0;
             dealerHandValue = CalculateHandValue(dealerHand);
+            StateHasChanged();
         }
 
         private int CalculateHandValue(List<Card> cards)
