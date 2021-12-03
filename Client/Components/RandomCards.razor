@@ -1,0 +1,8 @@
+﻿<h3>Random Deck</h3>
+
+<div class="row" style="width:100%;">
+    @foreach (var card in deck.NoJokers())
+    {
+        <PlayingCard Card=card />
+    }
+</div>

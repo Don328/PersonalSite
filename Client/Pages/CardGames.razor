@@ -1,22 +1,22 @@
 ﻿@page "/card-games"
-@using AlgoCards.Constants
-@using AlgoCards.Enums
-@using AlgoCards.Models
 
-<div class="row" style="width:100%;">
-        @foreach (var card in deck.Cards)
-        {
-            <PlayingCard Card=card />
-        }
+@using BlazorApp.Client.Utils.Enums
+
+<div class="row">
+    <div class="col">
+        <button class="btn" style="border-color:black;border-width:.1em;" @onclick=ShowRandomCards>Random Cards</button>
     </div>
+    <div class="col">
+        <button class="btn" style="border-color:black;border-width:.1em;" @onclick=ShowBlackJack>Black Jack</button>
+    </div>
+</div>
 
+@if (GameType == CardGameType.Random)
+{
+    <RandomCards />
+}
 
-@code {
-    private Deck deck = new();
-
-    protected override async Task OnInitializedAsync()
-    {
-        deck = new Deck(DeckType.Shuffled);
-        await Task.CompletedTask;
-    }
+@if (GameType == CardGameType.Blackjack)
+{
+    <BlackJack />
 }
