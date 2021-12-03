@@ -10,7 +10,8 @@ namespace BlazorApp.Client.Components
         private Deck deck = new();
         private Queue<Card> drawPile = new();
         private int playerBank = 100;
-        private int wager = 0;
+        private int handWager = 0;
+        private int playerWager = 5;
         private bool handIsActive = false;
         private List<Card> playerHand = new();
         private List<Card> dealerHand = new();
@@ -24,7 +25,7 @@ namespace BlazorApp.Client.Components
         protected override async Task OnInitializedAsync()
         {
             playerBank = 100;
-            wager = 0;
+            playerWager = 5;
             await Task.CompletedTask;
         }
 
@@ -32,18 +33,19 @@ namespace BlazorApp.Client.Components
         {
             if (WagerIsValid())
             {
+                handWager = playerWager;
                 await DealCards();
             }
         }
 
         private bool WagerIsValid()
         {
-            if (wager < 5)
+            if (playerWager < 5)
             {
                 dealerMessage = "Minimum wager value is 5";
                 return false;
             }
-            if (wager % 5 != 0)
+            if (playerWager % 5 != 0)
             {
                 dealerMessage = "Wager must be in increments of 5";
                 return false;
@@ -57,7 +59,7 @@ namespace BlazorApp.Client.Components
             dealerMessage = "Dealing Cards";
             await Task.Delay(500);
             dealerMessage = String.Empty;
-            playerBank -= wager;
+            playerBank -= playerWager;
 
             deck = new Deck(DeckType.Shuffled);
             drawPile = new Queue<Card>(deck.NoJokers());
@@ -90,7 +92,7 @@ namespace BlazorApp.Client.Components
                     if (playerHandValue == 21)
                     {
                         dealerMessage = "Push";
-                        playerBank += wager;
+                        playerBank += handWager;
                         handIsActive = false;
                         return;
                     }
@@ -103,7 +105,7 @@ namespace BlazorApp.Client.Components
                 if (playerHandValue == 21)
                 {
                     dealerMessage = "BlackJack!";
-                    playerBank += wager * 3;
+                    playerBank += handWager * 3;
                     handIsActive = false;
                     return;
                 }
@@ -167,7 +169,8 @@ namespace BlazorApp.Client.Components
 
         private void PlayerDoubles()
         {
-            wager = wager * 2;
+            playerBank -= handWager;
+            handWager = handWager * 2;
             playerHand.Add(drawPile.Dequeue());
             CalculatePlayerHand();
             DrawDealerHand();
@@ -262,13 +265,13 @@ namespace BlazorApp.Client.Components
             if (playerHandValue > dealerHandValue)
             {
                 dealerMessage = "You Win!";
-                playerBank += wager * 2;
+                playerBank += handWager * 2;
             }
 
             if (playerHandValue == dealerHandValue)
             {
                 dealerMessage = "Push";
-                playerBank += wager;
+                playerBank += handWager;
             }
 
             if (!IsBusted(dealerHandValue) &&
@@ -310,7 +313,7 @@ namespace BlazorApp.Client.Components
         private void DealerBusts()
         {
             dealerMessage = "Dealer Busted! You win!";
-            playerBank += wager * 2;
+            playerBank += handWager * 2;
             handIsActive = false;
         }
 
