@@ -2,21 +2,21 @@
 
 @using BlazorApp.Client.Utils.Enums
 
-<div class="row">
+@*<div class="row">
     <div class="col">
         <button class="btn" style="border-color:black;border-width:.1em;" @onclick=ShowRandomCards>Random Cards</button>
     </div>
     <div class="col">
         <button class="btn" style="border-color:black;border-width:.1em;" @onclick=ShowBlackJack>Black Jack</button>
     </div>
-</div>
+</div>*@
 
-@if (GameType == CardGameType.Random)
+@*@if (GameType == CardGameType.Random)
 {
     <RandomCards />
-}
+}*@
 
-@if (GameType == CardGameType.Blackjack)
+@*@if (GameType == CardGameType.Blackjack)
 {
-    <BlackJack />
-}
+}*@
+    <BlackJackGame />

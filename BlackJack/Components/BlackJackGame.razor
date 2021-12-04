@@ -1,0 +1,118 @@
+﻿@using global::BlackJack.Enums
+<h3>BlackJack</h3>
+
+<div class="card" style="background:var(--background);border-width:.1em;border-color:var(--highlight);margin-top:2em;">
+    <div class="card-body">
+        <h1 style="color:var(--accent)">BlackJack</h1>
+        <h3>Player Bank: $@player.Bank</h3>
+
+        <div class="row">
+            <EditForm Model=this>
+                <h3>Wager: $<InputNumber @bind-Value=player.Wager style="width:2em" /></h3>
+                <span style="color:var(--accent)">wager in increments of $10</span>
+            </EditForm>
+        </div>
+
+
+
+        <div class="row" style="margin-top:2em;">
+            <div class="col">
+                @if (player.Hands.Count > 0)
+                {
+                    @foreach (var hand in player.Hands)
+                    {
+                        <PlayerDisplay Hand=hand.Cards />
+                    }
+                }
+            </div>
+            <div class="col">
+                @if (!showDealerHand
+                && dealerHand.Cards.Any())
+                {
+                    var peek = dealerHand.PeekCard();
+                    @if (peek.CardValue > 0)
+                    {
+                        <h5>Dealer</h5>
+                        <PlayingCard Card=dealerHand.PeekCard() />
+                    }
+                }
+
+                @if (showDealerHand)
+                {
+                    <DealerDisplay Hand=dealerHand />
+                }
+            </div>
+        </div>
+        <h4>@dealerMessage</h4>
+        @if (showDealButton)
+        {
+            <button class="btn btn-xl" style="background:Green" @onclick=NewHand>Deal</button>
+        }
+
+        @if (player.Hands.Count == 1)
+        {
+            <div class="row">
+                <h3>Player: @player.Hands[0].Value</h3>
+            </div>
+        }
+
+        @if (player.Hands.Count > 1)
+        {
+            @for (int i = 0; i > player.Hands.Count(); i++)
+            {
+                <div class="row">
+                    <h3>Player(@i): @player.Hands[i].Value</h3>
+                    <h3>@player.Hands[i].DealerMessage</h3>
+                </div>
+            }
+        }
+
+        @if (!showDealerHand &&
+        dealerHand.Cards.Any())
+        {
+            <div class="row">
+                <h3>Dealer: @dealerHand.GetShowCardRankValue()</h3>
+            </div>
+        }
+
+        @if (showDealerHand)
+        {
+            var soft = string.Empty;
+            @if (dealerHand.IsSoft)
+            {
+                soft = "soft";
+            }
+            <div class="row">
+                <h3>Dealer: <span style="color:pink">@soft</span> @dealerHand.Value</h3>
+            </div>
+        }
+
+
+        @if (showPlayerActions)
+        {
+            @foreach (var opt in playerActions)
+            {
+                if (opt == PlayerActions.Stay)
+                {
+                    <button class="btn btn-lg" style="margin:1em; background:green" @onclick=PlayerStays>Stay</button>
+                }
+
+                if (opt == PlayerActions.Hit)
+                {
+                    <button class="btn btn-lg" style="margin:1em; background:orange" @onclick=PlayerHits>Hit</button>
+                }
+
+                if (opt == PlayerActions.DoubleDown)
+                {
+                    <button class="btn btn-lg" style="margin:1em; background:orangered" @onclick=PlayerDoubles>Double Down</button>
+                }
+
+                if (opt == PlayerActions.Split)
+                {
+                    <button class="btn btn-lg btn-warning" style="margin:1em;" @onclick=PlayerSplits>Split</button>
+                }
+            }
+        }
+    </div>
+</div>
+

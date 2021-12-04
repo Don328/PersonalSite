@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AlgoCards\AlgoCards.csproj" />
+    <ProjectReference Include="..\BlackJack\BlackJack.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
