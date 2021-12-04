@@ -46,23 +46,24 @@ namespace BlackJack.Models
 
         public async Task DoubleDown(Card card)
         {
-            await AddCard(card);
+            await base.AddCard(card);
             wager *= 2;
             Stay();
+            
             await Task.CompletedTask;
         }
 
-        public PlayerHand Split()
+        public async Task<PlayerHand> Split()
         {
             var transferCard = Cards[1];
             
             var newHand = 
                 new PlayerHand(wager);
             
-            newHand.AddCard(transferCard);
+            await newHand.AddCard(transferCard);
             Cards.Remove(transferCard);
 
-            return newHand;
+            return await Task.FromResult(newHand);
         }
 
         public void Stay()

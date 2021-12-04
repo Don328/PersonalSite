@@ -23,7 +23,7 @@ namespace BlackJack.Components
         private Queue<Card> drawPile = new();
         private List<PlayerActions> playerActions = new();
         private bool showPlayerActions = false;
-        
+        private bool handIsPaid = false;
         private PlayerHand currentHand = new(10);
 
         protected override async Task OnInitializedAsync()
@@ -77,6 +77,7 @@ namespace BlackJack.Components
             player.Bank -= player.Wager;
             await Task.Delay(500);
             dealerMessage = String.Empty;
+            handIsPaid = false;
         }
 
         private void SetupDealer()
@@ -249,6 +250,7 @@ namespace BlackJack.Components
         {
             showPlayerActions = false;
             await Task.Delay(500);
+            player.Bank -= currentHand.Wager;
             await currentHand.DoubleDown(drawPile.Dequeue());
             StateHasChanged();
             
@@ -274,6 +276,7 @@ namespace BlackJack.Components
             var playerAlive = (
                 from h in player.Hands
                 where h.IsBusted == false
+                && h.IsBlackJack == false
                 select h).Any();
                 
             if (!playerAlive)
@@ -298,36 +301,46 @@ namespace BlackJack.Components
 
         private void EndHand()
         {
-            dealerMessage = String.Empty;
-
-            foreach (var hand in player.Hands)
+            if (!handIsPaid)
             {
-                if (hand.Value > 21)
-                {
-                    dealerMessage = "Busted!";
-                }
-                else if (hand.Value == dealerHand.Value)
-                {
-                    dealerMessage = "Push";
-                    player.Bank += hand.Wager;
-                }
-                else if (dealerHand.Value > 21)
-                {
-                    dealerMessage = $"Dealer busts! You win ${hand.Wager}";
-                    player.Bank += hand.Wager * 2;
-                }
-                else if (hand.Value > dealerHand.Value)
-                {
-                    dealerMessage = $"You win {hand.Wager}!";
-                    player.Bank += hand.Wager * 2;
-                }
-                else
-                {
-                    dealerMessage = "You lose.";
-                }
+                dealerMessage = String.Empty;
 
-                showDealButton = true;
-                StateHasChanged();
+                foreach (var hand in player.Hands)
+                {
+                    if (hand.Value > 21)
+                    {
+                        dealerMessage = "Busted!";
+                    }
+                    else if (hand.Value == dealerHand.Value)
+                    {
+                        dealerMessage = "Push";
+                        player.Bank += hand.Wager;
+                    }
+                    else if (hand.Cards.Count == 2
+                            && hand.Value == 21)
+                    {
+                        dealerMessage = "BlackJack!";
+                        player.Bank += (hand.Wager / 10) * 25;
+                    }
+                    else if (dealerHand.Value > 21)
+                    {
+                        dealerMessage = $"Dealer busts! You win ${hand.Wager}";
+                        player.Bank += hand.Wager * 2;
+                    }
+                    else if (hand.Value > dealerHand.Value)
+                    {
+                        dealerMessage = $"You win {hand.Wager}!";
+                        player.Bank += hand.Wager * 2;
+                    }
+                    else
+                    {
+                        dealerMessage = "You lose.";
+                    }
+
+                    handIsPaid=true;
+                    showDealButton = true;
+                    StateHasChanged();
+                }
             }
         }
 
