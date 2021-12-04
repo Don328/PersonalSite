@@ -262,9 +262,19 @@ namespace BlackJack.Components
 
         }
 
-        private void PlayerSplits()
+        private async Task PlayerSplits()
         {
-
+            currentHand.Cards = await player
+                .SplitHand(currentHand.Cards);
+            StateHasChanged();
+            foreach (var hand in player.Hands)
+            {
+                if (hand.Cards.Count() > 2)
+                {
+                    await hand.AddCard(drawPile.Dequeue());
+                    StateHasChanged();
+                }
+            }
         }
 
         private async Task PlayDealerHand()
@@ -343,68 +353,5 @@ namespace BlackJack.Components
                 }
             }
         }
-
-        //private void CalculateDealerHand()
-        //{
-        //    dealerHandValue = 0;
-        //    dealerHandValue = CalculateHandValue(dealerHand);
-        //    StateHasChanged();
-        //}
-
-        //private int CalculateHandValue(List<Card> cards)
-        //{
-        //    var value = 0;
-        //    List<Card> aces = new();
-        //    foreach (var card in cards)
-        //    {
-        //        switch (card.CardValue)
-        //        {
-        //            default:
-        //                value += card.CardValue;
-        //                break;
-        //            case > 9:
-        //                value += 10;
-        //                break;
-        //            case 1:
-        //                aces.Add(card);
-        //                break;
-        //        }
-        //    }
-
-        //    foreach (var ace in aces)
-        //    {
-        //        switch (value)
-        //        {
-        //            default:
-        //                value += 11;
-        //                break;
-        //            case > 10:
-        //                value += 1;
-        //                break;
-        //        }
-        //    }
-
-        //    return value;
-        //}
-
-        //private void CalculateDealerShowValue()
-        //{
-        //    dealerShowValue = 0;
-        //    foreach (var card in GetDealerShow(dealerHand))
-        //    {
-        //        switch (card.CardValue)
-        //        {
-        //            default:
-        //                dealerShowValue += card.CardValue;
-        //                break;
-        //            case 1:
-        //                dealerShowValue += 11;
-        //                break;
-        //            case > 9:
-        //                dealerShowValue += 10;
-        //                break;
-        //        }
-        //    }
-        //}
     }
 }

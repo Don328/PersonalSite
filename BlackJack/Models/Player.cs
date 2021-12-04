@@ -36,6 +36,16 @@ namespace BlackJack.Models
 
         public bool HasEnoughBank
         { get { return HasBank(); } }
+        
+        public async Task<List<Card>> SplitHand(List<Card> hand)
+        {
+            var transferCard = hand[1];
+            var newHand = new PlayerHand(wager);
+            await newHand.AddCard(transferCard);
+            hand.Remove(transferCard);
+            Hands.Add(newHand);
+            return await Task.FromResult(hand);
+        }
 
         private bool HasBank()
         {
