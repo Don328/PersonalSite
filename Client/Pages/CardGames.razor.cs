@@ -1,6 +1,4 @@
-﻿using AlgoCards.Enums;
-using AlgoCards.Models;
-using BlazorApp.Client.Utils.Enums;
+﻿using BlazorApp.Client.Utils.Enums;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Client.Pages

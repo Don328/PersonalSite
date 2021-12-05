@@ -1,5 +1,5 @@
-﻿using AlgoCards.Enums;
-using AlgoCards.Models;
+﻿using BlackJack.Enums;
+using BlackJack.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorApp.Client.Components

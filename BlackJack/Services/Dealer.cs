@@ -1,12 +1,12 @@
-﻿using AlgoCards.Enums;
-using AlgoCards.Models;
+﻿using BlackJack.Enums;
+using BlackJack.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgoCards.Services
+namespace BlackJack.Services
 {
     internal static class Dealer
     {

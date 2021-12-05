@@ -1,6 +1,4 @@
-﻿using AlgoCards.Enums;
-using AlgoCards.Models;
-using BlackJack.Enums;
+﻿using BlackJack.Enums;
 using BlackJack.Models;
 using BlackJack.Utils;
 using Microsoft.AspNetCore.Components;
