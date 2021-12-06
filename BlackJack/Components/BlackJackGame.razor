@@ -26,8 +26,7 @@
                 }
             </div>
             <div class="col">
-                @if (!showDealerHand
-                && dealerHand.Cards.Any())
+                @if (dealerHand.Status == HandStatus.Dealt)
                 {
                     var peek = dealerHand.PeekCard();
                     @if (peek.CardValue > 0)
@@ -37,7 +36,8 @@
                     }
                 }
 
-                @if (showDealerHand)
+                @if (dealerHand.Status != HandStatus.Dealt
+                    && dealerHand.Cards.Count() > 1)
                 {
                     <DealerDisplay Hand=dealerHand />
                 }
@@ -53,6 +53,7 @@
         {
             <div class="row">
                 <h3>Player: @player.Hands[0].Value</h3>
+                <h3>@player.Hands[0].Message</h3>
             </div>
         }
 
@@ -61,21 +62,21 @@
             @for (int i = 0; i > player.Hands.Count(); i++)
             {
                 <div class="row">
-                    <h3>Player(@i): @player.Hands[i].Value</h3>
-                    <h3>@player.Hands[i].DealerMessage</h3>
+                    <h3>Player(Hand#@i): @player.Hands[i].Value</h3>
+                    <h3>@player.Hands[i].Message</h3>
                 </div>
             }
         }
 
-        @if (!showDealerHand &&
-        dealerHand.Cards.Any())
+        @if (dealerHand.Status == HandStatus.Dealt)
         {
             <div class="row">
                 <h3>Dealer: @dealerHand.GetShowCardRankValue()</h3>
             </div>
         }
 
-        @if (showDealerHand)
+        @if (dealerHand.Status != HandStatus.Dealt
+            && dealerHand.Cards.Count() > 1)
         {
             var soft = string.Empty;
             @if (dealerHand.IsSoft)
@@ -92,25 +93,25 @@
         {
             @foreach (var opt in playerActions)
             {
-                if (opt == PlayerActions.Stay)
+                if (opt == PlayerOptions.Stay)
                 {
                     <button class="btn btn-lg" style="margin:1em; background:green" @onclick=PlayerStays>Stay</button>
                 }
 
-                if (opt == PlayerActions.Hit)
+                if (opt == PlayerOptions.Hit)
                 {
                     <button class="btn btn-lg" style="margin:1em; background:orange" @onclick=PlayerHits>Hit</button>
                 }
 
-                if (opt == PlayerActions.DoubleDown)
+                if (opt == PlayerOptions.DoubleDown)
                 {
                     <button class="btn btn-lg" style="margin:1em; background:orangered" @onclick=PlayerDoubles>Double Down</button>
                 }
 
-@*                if (opt == PlayerActions.Split)
+                if (opt == PlayerOptions.Split)
                 {
                     <button class="btn btn-lg btn-warning" style="margin:1em;" @onclick=PlayerSplits>Split</button>
-                }*@
+                }
             }
         }
     </div>

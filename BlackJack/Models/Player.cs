@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackJack.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,13 @@ namespace BlackJack.Models
     {
         private int bank = 0;
         private int wager = 0;
+        private List<PlayerHand> hands
+            = new List<PlayerHand>();
 
-        public List<PlayerHand> Hands { get; set; }
 
         public Player(int bank)
         {
-            Hands = new List<PlayerHand>();
+            hands = new List<PlayerHand>();
             this.bank = bank;
         }
 
@@ -30,33 +32,30 @@ namespace BlackJack.Models
             set { wager = value; }
         }
 
-        public bool IsActive
-        { get { return HasActiveHands(); } }
-
-        public bool HasEnoughBank
-        { get { return HasBank(); } }
-        
-        public async Task<List<Card>> SplitHand(List<Card> hand)
+        public List<PlayerHand> Hands
         {
-            var transferCard = hand[1];
-            var newHand = new PlayerHand(wager);
-            await newHand.AddCard(transferCard);
-            hand.Remove(transferCard);
-            Hands.Add(newHand);
+            get { return hands; }
+        }
+
+        public async Task<PlayerHand> NewHand()
+        {
+            Hands.Clear();
+            var hand = new PlayerHand(wager);
+            Hands.Add(hand);
+            bank -= wager;
             return await Task.FromResult(hand);
         }
 
-        private bool HasBank()
-        {
-            return bank > wager;
-        }
+        public bool HasEnoughBank() => bank >= wager;
 
-        private bool HasActiveHands()
-        {
-            return (from h in Hands
-                where h.Stayed == false
-                && h.IsBusted == false
-                select h).Any();
-        }
+        public PlayerHand? GetActiveHand() => (
+                from h in Hands
+                where h.Status == HandStatus.Active
+                select h).FirstOrDefault();
+
+        public PlayerHand? GetNext() => (
+                from h in Hands
+                where h.Status == HandStatus.Dealt
+                select h).FirstOrDefault()?.Activate();
     }
 }

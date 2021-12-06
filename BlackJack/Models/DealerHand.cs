@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackJack.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,6 @@ namespace BlackJack.Models
 {
     public class DealerHand : Hand
     {
-        private bool isActive;
-        //private Card peekCard;
-
         public Card PeekCard()
         {
             if (Cards.Count < 1)
@@ -23,8 +21,39 @@ namespace BlackJack.Models
             }
         }
 
-        public bool IsActive
-        { get { return isActive; } }
+        public override Hand Activate()
+        {
+            status = HandStatus.Active;
+            return this;
+        }
+
+        public override async Task AddCard(Card card)
+        {
+            await base.AddCard(card);
+            CheckStatus();
+        }
+
+        protected override void CheckStatus()
+        {
+            switch (status)
+            {
+                case HandStatus.New:
+                    base.CheckStatus();
+                    break;
+                case HandStatus.Dealt:
+                    base.CheckStatus();
+                    break;
+                case HandStatus.Active:
+                    CheckIsSoft();
+                    if (CheckIfBusted())
+                    {
+                        break;
+                    }
+                    
+                    CheckForHold();
+                    break;
+            }
+        }
 
         public int GetShowCardRankValue()
         {
@@ -39,37 +68,23 @@ namespace BlackJack.Models
                 default:
                     return firstCardValue;
             }
-
-
-            return Cards[0].CardValue;
         }
 
-        public bool CheckForHit()
+        public void CheckForHold()
         {
-            isActive = true;
-
-            if (IsBusted || IsBlackJack)
+            if (status == HandStatus.Active)
             {
-                isActive = false;
+                if (Value > 17)
+                {
+                    status = HandStatus.Hold;
+                }
+
+                if (Value == 17
+                    && !IsSoft)
+                {
+                    status = HandStatus.Hold;
+                }
             }
-
-            if (Value > 17)
-            {
-                isActive = false;
-            }
-
-            if (Value == 17
-                && !IsSoft)
-            {
-                isActive = false;
-            }
-
-            return isActive;
-        }
-
-        public void Show()
-        {
-            isActive = true;
         }
     }
 }

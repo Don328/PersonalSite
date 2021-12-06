@@ -1,6 +1,6 @@
 ﻿namespace BlackJack.Enums
 {
-    internal enum PlayerActions
+    internal enum PlayerOptions
     {
         Stay,
         Hit,
