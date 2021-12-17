@@ -1,4 +1,4 @@
-﻿using AlgoCards.Models;
+﻿using BlackJack.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,57 +9,102 @@ namespace BlackJack.Models
 {
     public class PlayerHand : Hand
     {
+        private bool isPaid = false;
         private int wager = 0;
-        private bool isFirstMove = true;
-        private bool isPair = false;
-        private bool stay = false;
+        private HandResult result;
 
         public PlayerHand(int wager)
         {
+            status = HandStatus.New;
+            result = HandResult.Pending;
+            isPaid = false;
             this.wager = wager;
-            stay = false;
-        } 
+        }
 
-        public int Wager 
+        public bool IsPaid
+        { get { return isPaid; } }
+
+        public int Wager
         { get { return wager; } }
 
-        public bool IsFirstMove
-        { get { return isFirstMove; } }
+        internal HandResult Result
+        { get { return result; } }
 
-        public bool IsPair
-        { get { return isPair; } }
 
-        public bool Stayed
-        { 
-            get { return stay; }
+        public override PlayerHand Activate()
+        {
+            status = HandStatus.Active;
+            return this;
         }
 
         public override async Task AddCard(Card card)
         {
             await base.AddCard(card);
-            CheckIsFirstMove(Cards);
-            if (isFirstMove)
+        }
+
+        public override async Task<int> GetValue()
+        {
+            var aces = (
+                from c in Cards
+                where c.CardValue == 1
+                select c).ToList();
+
+            switch (baseValue)
             {
-                CheckIsPair(Cards);
+                case > 21:
+                    if (!aces.Any())
+                    {
+                        status = HandStatus.Busted;
+                        return await Task.FromResult(baseValue);
+                    }
+                    else
+                    {
+                        CheckIsSoft();
+                        var adjusted = GetAdjustedValue(aces, baseValue);
+                        if (adjusted > 21)
+                        {
+                            status = HandStatus.Busted;
+                        }
+                        return await Task.FromResult(adjusted);
+                    }
+                case < 21:
+                    if (aces.Any())
+                    {
+                        CheckIsSoft();
+                    }
+                    return baseValue;
+
+                case 21:
+                    if (CheckIfBlackJack())
+                    {
+                        status = HandStatus.BlackJack;
+                        return baseValue;
+                    }
+                    status = HandStatus.Pending;
+                    return baseValue;
             }
         }
+
+        public bool CanDouble() => Cards.Count == 2;
+        public bool CanSplit() => IsPair(Cards);
+        public bool IsBusted() => status == HandStatus.Busted;
 
         public async Task DoubleDown(Card card)
         {
             await base.AddCard(card);
             wager *= 2;
             Stay();
-            
+
             await Task.CompletedTask;
         }
 
         public async Task<PlayerHand> Split()
         {
             var transferCard = Cards[1];
-            
-            var newHand = 
+
+            var newHand =
                 new PlayerHand(wager);
-            
+
             await newHand.AddCard(transferCard);
             Cards.Remove(transferCard);
 
@@ -68,33 +113,24 @@ namespace BlackJack.Models
 
         public void Stay()
         {
-            stay = true;
+            status = HandStatus.Pending;
         }
 
-        private bool CheckIsFirstMove(List<Card> cards)
+        private bool IsPair(List<Card> cards)
         {
-            isFirstMove = false;
-
-            if (cards.Count == 2)
-                isFirstMove = true;
-            
-            return isFirstMove;
-        }
-
-
-    private bool CheckIsPair(List<Card> cards)
-        {
-            isPair = false;
-            if (CheckIsFirstMove(cards))
+            if (CanDouble())
             {
-                if (cards[0].CardValue 
-                    == cards[1].CardValue)
-                {
-                    isPair = true;
-                }
+                return cards[0].CardValue 
+                    == cards[1].CardValue;
             }
-            
-            return isPair;
+
+            return false;
+        }
+
+        internal void SetResult(HandResult result)
+        {
+            this.result = result;
         }
     }
+
 }

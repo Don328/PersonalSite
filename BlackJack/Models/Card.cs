@@ -1,12 +1,12 @@
-﻿using AlgoCards.Constants;
-using AlgoCards.Enums;
+﻿using BlackJack.Constants;
+using BlackJack.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgoCards.Models
+namespace BlackJack.Models
 {
     public class Card
     {

@@ -1,5 +1,4 @@
-﻿using AlgoCards.Models;
-using BlackJack.Models;
+﻿using BlackJack.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using AlgoCards.Models;
+﻿using BlackJack.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,54 +9,83 @@ namespace BlackJack.Models
 {
     public abstract class Hand
     {
-        private int value = 0;
-        private bool isBusted = false;
-        private bool isSoft = false;
-        private bool isBlackJack = false;
-        private string dealerMessage = string.Empty;
+        protected List<Card> cards;
+        protected int baseValue = 0;
+        protected bool isSoft = false;
+        protected HandStatus status = HandStatus.New;
+        protected string message = string.Empty;
 
         public Hand()
         {
-            Cards = new List<Card>();
+            cards = new List<Card>();
+            status = HandStatus.New;
+            baseValue = 0;
+            isSoft = false;
+            message = string.Empty;
         }
 
         public List<Card> Cards
-        { get; set; }
-        
-        public bool IsBusted 
-        { get { return isBusted; } }
-        
+        { get { return cards; } }
+
+        public HandStatus Status
+        { get { return status; } }
+
         public bool IsSoft
         { get { return isSoft; } }
-        
-        public int Value
-        { get { return value; } }
 
-        public bool IsBlackJack
-        { get { return isBlackJack; } }
+        public Task<int> Value
+        { get { return GetValue(); } }
 
-        public string DealerMessage
-        { 
-            get { return dealerMessage; }
-            set { dealerMessage = value; }
+        public string Message
+        { get { return message; } }
+
+        public abstract Hand Activate();
+        public abstract Task<int> GetValue();
+
+        internal virtual void Clear()
+        {
+            cards.Clear();
+            status = HandStatus.New;
+            isSoft = false;
+            message = string.Empty;
         }
 
         public virtual async Task AddCard(Card card)
         {
             Cards.Add(card);
-            value = CalculateHandValue();
-            isBusted = CheckIfBusted();
-            isBlackJack = CheckIfBlackJack();
 
+            if (Cards.Count == 2) status = HandStatus.Dealt;
+            if (cards.Count > 2) status = HandStatus.Active;
+
+            baseValue = CalculateBaseValue(Cards);
+            await GetValue();
             await Task.CompletedTask;
         }
 
-        private int CalculateHandValue()
+
+        protected int GetAdjustedValue(List<Card> aces, int val)
+        {
+            int adjusted = val;
+            adjusted -= 10;
+            var ace = (from c in aces
+                       select c).First();
+            aces.Remove(ace);
+
+            isSoft = aces.Any();
+
+            if (adjusted > 21
+            && isSoft)
+            {
+                GetAdjustedValue(aces, adjusted);
+            }
+
+            return adjusted;
+        }
+
+        private int CalculateBaseValue(List<Card> cards)
         {
             int newValue = 0;
-            List<Card> aces = new();
-            
-            foreach (Card card in Cards)
+            foreach (Card card in cards)
             {
                 switch (card.CardValue)
                 {
@@ -64,7 +93,7 @@ namespace BlackJack.Models
                         newValue += 10;
                         break;
                     case 1:
-                        aces.Add(card);
+                        newValue += 11;
                         break;
                     default:
                         newValue += card.CardValue;
@@ -72,66 +101,69 @@ namespace BlackJack.Models
                 }
             }
 
-            if (aces.Count > 0)
-            {
-                int acesValue = 0;
-                foreach (var ace in aces)
-                {
-                    switch (newValue)
-                    {
-                        case > 10:
-                            acesValue += 1;
-                            newValue += 1;
-                            break;
-                        default:
-                            acesValue += 11;
-                            newValue += 11;
-                            break;
-                    }
-                }
-
-                isSoft = CheckIsSoft(
-                    aces.Count, acesValue);
-            }
-
-
             return newValue;
         }
 
-        private bool CheckIsSoft(int acesCount, int acesValue)
+        protected bool CheckIsSoft()
         {
-            if (acesCount < acesValue)
+            isSoft = false;
+
+            var aces = (from c in Cards
+                        where c.CardValue == 1
+                        select c).ToList();
+            var noAces = (from c in Cards
+                          where !aces.Any()
+                          select c).ToList();
+
+            var hasAces = aces.Any();
+
+            if (hasAces)
+            {
+                if (baseValue > 21
+                    && GetAdjustedValue(aces, baseValue) < 22)
+                {
+                    return isSoft;
+                }
+
+            }
+
+            isSoft = hasAces;
+            return isSoft;
+        }
+
+        protected async Task<bool> CheckIfBusted()
+        {
+            var value = await Value;
+
+            if (!isSoft &&
+                value > 21)
+            {
+                status = HandStatus.Busted;
                 return true;
+            }
+
             return false;
         }
 
-        private bool CheckIfBusted()
+        protected bool CheckIfBlackJack()
         {
-            if (value > 21)
+            if (Cards.Count() == 2
+                && baseValue == 21)
             {
-                isBusted = true;
+                return true;
             }
 
-            return isBusted;
+            return false;
         }
 
-        private bool CheckIfBlackJack()
+        public void SetMessage(string message)
         {
-            isBlackJack = false;
-
-            if (Cards.Count == 2
-                && value == 21)
-            {
-                isBlackJack = true;
-                isSoft = false;
-            }
-
-            return isBlackJack;
+            this.message = message;
         }
 
-        public void SetDealerMessage(string message)
+        public void SetStatus(HandStatus status)
         {
-            dealerMessage = message;
+            this.status = status;
         }
     }
 }

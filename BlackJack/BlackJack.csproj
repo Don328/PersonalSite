@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AlgoCards\AlgoCards.csproj" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

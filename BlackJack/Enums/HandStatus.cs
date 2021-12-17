@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Enums
 {
-    internal enum PlayerActions
+    public enum HandStatus
     {
-        Stay,
-        Hit,
-        DoubleDown,
-        Split,
+        New,
+        Dealt,
+        BlackJack,
+        Busted,
+        Active,
+        Pending,
+        Hold,
+        Paid,
     }
 }
