@@ -1,6 +1,5 @@
 ﻿using BlackJack.Constants;
 using BlackJack.Enums;
-using BlackJack.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +8,62 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Models
 {
-    public class Deck
+    public class Deck : IDisposable
     {
         private readonly DeckType deckType;
         private readonly List<Card> cards;
 
+        /// <summary>
+        ///  Creates a new deck. Passing in a DeckType will crate a deck of a specific type
+        ///  An empty constructor creates a "Standard" deck
+        /// </summary>
+        /// <param name="deckType">
+        /// - Shuffled: Has jokers
+        /// - Standard: Shuffled w/o jokers
+        /// - Packaged: Sorted with jokers
+        /// - Sorted: No jokers
+        /// </param>
+
+        public Deck(
+            DeckType deckType = DeckType.Standard)
+        {
+            this.deckType = deckType;
+
+            switch(deckType)
+            {
+                case DeckType.Standard:
+                    cards = GetDeck(DeckType.Shuffled);
+                    cards = this.NoJokers();
+                    break;
+                case DeckType.Sorted:
+                    cards= GetDeck(DeckType.Sorted);
+                    cards = this.NoJokers();
+                    break;
+                case DeckType.Shuffled:
+                    cards = GetDeck(DeckType.Shuffled);
+                    break;
+                case DeckType.Packaged:
+                    cards = GetDeck(DeckType.Sorted);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public List<Card> Cards
         { get { return cards; } }
 
-        public Deck(
-            DeckType deckType = DeckType.Shuffled)
+        private List<Card> GetDeck(DeckType deckType)
         {
-            this.deckType = deckType;
-            cards = GetDeck(deckType);
+            switch (deckType)
+            {
+                default:
+                    return new List<Card>();
+                case DeckType.Sorted:
+                    return GetSortedDeck();
+                case DeckType.Shuffled:
+                    return GetShuffledDeck();
+            }
         }
 
         public List<Card> NoJokers()
@@ -90,17 +132,48 @@ namespace BlackJack.Models
 
         }
 
-        private List<Card> GetDeck(DeckType deckType)
+        private List<Card> GetSortedDeck()
         {
-            switch (deckType)
+            var deck = new List<Card>();
+
+            for (int i = 0; i < 54; i++)
             {
-                default:
-                    return new List<Card>();
-                case DeckType.Sorted:
-                    return Dealer.GetSortedDeck();
-                case DeckType.Shuffled:
-                    return Dealer.GetShuffledDeck();
+                deck.Add(new Card((CardValueIndex)i));
             }
+
+            return deck;
+        }
+
+        private List<Card> GetShuffledDeck()
+        {
+            int deckSize = 54;
+            var deck = new List<Card>();
+            var table = new bool[deckSize];
+
+            for (int i = 0; i < deckSize; i++)
+            {
+                table[i] = false;
+            }
+
+            while (deck.Count < deckSize)
+            {
+                var random = new Random();
+                int value = random.Next(54);
+                if (!table[value])
+                {
+                    deck.Add(new Card((CardValueIndex)value));
+                    table[value] = true;
+                }
+
+                continue;
+            }
+
+            return deck;
+        }
+
+        public void Dispose()
+        {
+            cards.Clear();
         }
     }
 }

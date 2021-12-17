@@ -6,24 +6,35 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Utils
 {
-    internal static class WagerValidator
+    internal class WagerValidator
     {
+
         static int min = 10;
         static int increment = 10;
-        internal const string successMessage = "success";
+        private string result = string.Empty;
+        private readonly string success = "Success";
+        private readonly string lessThanMin = $"Minimum wager value is {min}";
+        private readonly string notCorrectIncrement = $"Wager must be in increments of {increment}";
 
-        internal static string IsValid(int wager)
+        public WagerValidator(int wager)
         {
+            
+
             if (wager < min)
             {
-                return "Minimum wager value is 10";
+                result = lessThanMin;
             }
-            if (wager % increment != 0)
+            else if (wager % increment != 0)
             {
-                return "Wager must be in increments of 10";
+                result = notCorrectIncrement;
             }
-
-            return successMessage;
+            else
+            {
+                result = success;
+            }
         }
+
+        public string Success { get { return success; } }
+        public string Result { get { return result; } }
     }
 }

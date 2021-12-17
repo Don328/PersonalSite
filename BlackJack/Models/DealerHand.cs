@@ -30,28 +30,65 @@ namespace BlackJack.Models
         public override async Task AddCard(Card card)
         {
             await base.AddCard(card);
-            CheckStatus();
         }
 
-        protected override void CheckStatus()
+        public override async Task<int> GetValue()
         {
-            switch (status)
+            var aces = (
+            from c in Cards
+            where c.CardValue == 1
+            select c).ToList();
+
+            switch (baseValue)
             {
-                case HandStatus.New:
-                    base.CheckStatus();
-                    break;
-                case HandStatus.Dealt:
-                    base.CheckStatus();
-                    break;
-                case HandStatus.Active:
-                    CheckIsSoft();
-                    if (CheckIfBusted())
+                case 21:
+                    if (CheckIfBlackJack())
                     {
-                        break;
+                        status = HandStatus.BlackJack;
+                        return baseValue;
                     }
-                    
-                    CheckForHold();
-                    break;
+                    status = HandStatus.Hold;
+                    return baseValue;
+                case > 21:
+                    if (!aces.Any())
+                    {
+                        status = HandStatus.Busted;
+                        return await Task.FromResult(baseValue);
+                    }
+                    else
+                    {
+                        CheckIsSoft();
+                        var adjusted = GetAdjustedValue(aces, baseValue);
+                        if (adjusted > 21)
+                        {
+                            status = HandStatus.Busted;
+                        }
+                        else if (adjusted > 16)
+                        {
+                            status = HandStatus.Hold;
+                        }
+
+                        return adjusted;
+                    }
+                case < 21:
+                    if (aces.Any())
+                    {
+                        CheckIsSoft();
+                    }
+
+                    if (baseValue > 17)
+                    {
+                        status = HandStatus.Hold;
+                    }
+                    if (baseValue == 17)
+                    {
+                        if (!isSoft)
+                        {
+                            status = HandStatus.Hold;
+                        }
+                    }
+
+                    return baseValue;
             }
         }
 
@@ -70,21 +107,22 @@ namespace BlackJack.Models
             }
         }
 
-        public void CheckForHold()
-        {
-            if (status == HandStatus.Active)
-            {
-                if (Value > 17)
-                {
-                    status = HandStatus.Hold;
-                }
+        //public async void CheckForHold()
+        //{
+        //    var value = await Value;
+        //    if (status == HandStatus.Active)
+        //    {
+        //        if (value > 17)
+        //        {
+        //            status = HandStatus.Hold;
+        //        }
 
-                if (Value == 17
-                    && !IsSoft)
-                {
-                    status = HandStatus.Hold;
-                }
-            }
-        }
+        //        if (value == 17
+        //            && !IsSoft)
+        //        {
+        //            status = HandStatus.Hold;
+        //        }
+        //    }
+        //}
     }
 }

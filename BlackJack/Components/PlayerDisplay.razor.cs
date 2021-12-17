@@ -10,7 +10,9 @@ namespace BlackJack.Components
 {
     public partial class PlayerDisplay : ComponentBase
     {
+
         [Parameter]
-        public List<Card> Hand { get; set; }
+        public Player Player { get; set; }
+            = new(200);
     }
 }

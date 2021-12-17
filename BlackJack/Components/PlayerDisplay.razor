@@ -1,5 +1,23 @@
 ﻿<h5>Player</h5>
-@foreach (var card in Hand)
+
+@foreach (var hand in Player.Hands)
 {
-    <PlayingCard Card=card />
+    var index = Player.Hands.IndexOf(hand);
+
+    <div class="card-body">
+        @foreach (var card in hand.Cards)
+        {
+            <PlayingCard Card=card />
+        }
+        @if (index == 0)
+        {
+            <h5>Total: @hand.Value.Result</h5>
+        }
+        else
+        {
+            <h5>Hand @(index + 1) Total: @hand.Value.Result</h5>
+        }
+        <p>@hand.Message</p>
+    </div>
+
 }

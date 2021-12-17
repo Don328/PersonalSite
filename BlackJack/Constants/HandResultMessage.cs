@@ -16,6 +16,6 @@ namespace BlackJack.Constants
         public const string push = "Push";
         public const string playerWins = "Player Wins!";
         public const string dealerHolds = "Dealer Holds";
-        public const string dealerBlackJack = "Dealer BlackJack";
+        public const string dealerBlackJack = "Dealer has Black Jack";
     }
 }

@@ -9,14 +9,14 @@ namespace BlackJack.Models
 {
     public class PlayerHand : Hand
     {
-
-
         private bool isPaid = false;
         private int wager = 0;
+        private HandResult result;
 
         public PlayerHand(int wager)
         {
             status = HandStatus.New;
+            result = HandResult.Pending;
             isPaid = false;
             this.wager = wager;
         }
@@ -27,8 +27,9 @@ namespace BlackJack.Models
         public int Wager
         { get { return wager; } }
 
-        protected override void CheckStatus()
-            => base.CheckStatus();
+        internal HandResult Result
+        { get { return result; } }
+
 
         public override PlayerHand Activate()
         {
@@ -39,7 +40,49 @@ namespace BlackJack.Models
         public override async Task AddCard(Card card)
         {
             await base.AddCard(card);
-            CheckStatus();
+        }
+
+        public override async Task<int> GetValue()
+        {
+            var aces = (
+                from c in Cards
+                where c.CardValue == 1
+                select c).ToList();
+
+            switch (baseValue)
+            {
+                case > 21:
+                    if (!aces.Any())
+                    {
+                        status = HandStatus.Busted;
+                        return await Task.FromResult(baseValue);
+                    }
+                    else
+                    {
+                        CheckIsSoft();
+                        var adjusted = GetAdjustedValue(aces, baseValue);
+                        if (adjusted > 21)
+                        {
+                            status = HandStatus.Busted;
+                        }
+                        return await Task.FromResult(adjusted);
+                    }
+                case < 21:
+                    if (aces.Any())
+                    {
+                        CheckIsSoft();
+                    }
+                    return baseValue;
+
+                case 21:
+                    if (CheckIfBlackJack())
+                    {
+                        status = HandStatus.BlackJack;
+                        return baseValue;
+                    }
+                    status = HandStatus.Pending;
+                    return baseValue;
+            }
         }
 
         public bool CanDouble() => Cards.Count == 2;
@@ -49,7 +92,6 @@ namespace BlackJack.Models
         public async Task DoubleDown(Card card)
         {
             await base.AddCard(card);
-            CheckStatus();
             wager *= 2;
             Stay();
 
@@ -80,15 +122,14 @@ namespace BlackJack.Models
             {
                 return cards[0].CardValue 
                     == cards[1].CardValue;
-
             }
 
             return false;
         }
 
-        public void SetStatus(HandStatus status)
+        internal void SetResult(HandResult result)
         {
-            this.status = status;
+            this.result = result;
         }
     }
 

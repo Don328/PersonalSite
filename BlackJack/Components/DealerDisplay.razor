@@ -1,7 +1,22 @@
 ﻿<h5>Dealer</h5>
 <div class="row" style="color:var(--accent)">
-        @foreach (var card in Hand.Cards)
+    @foreach (var card in Hand.Cards)
+    {
+        <PlayingCard Card=card />
+    }
+    @if (Hand.Status == HandStatus.Dealt
+        || Hand.Status == HandStatus.New)
+    {
+        <h5>Dealer Showing: @Hand.GetShowCardRankValue()</h5>
+    }
+    else
+    {
+        var soft = string.Empty;
+        @if (Hand.IsSoft)
         {
-            <PlayingCard Card=card />
+            soft = " soft"; 
         }
+
+        <h5>Total:<span style="color:pink">@soft</span> @Hand.Value.Result</h5>
+    }
 </div>

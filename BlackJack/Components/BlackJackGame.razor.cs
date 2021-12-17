@@ -14,162 +14,150 @@ namespace BlackJack.Components
     public partial class BlackJackGame : ComponentBase
     {
         private bool showDealButton = true;
-        private Deck deck = new();
-        private Queue<Card> drawPile = new();
-        private DealerHand dealerHand = new();
+        private bool hideDealerHand = true;
+        private Dealer dealer = new();
         private Player player = new(200);
         private List<PlayerOptions> playerActions = new();
         private bool showPlayerActions = false;
-        private PlayerHand activeHand = new(0);
 
 
-        // Distribut dealer message to individual hands?
-        // Or Separate responsiblities and inclued global dealer message
+
         private string dealerMessage = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
-            player = new Player(200);
-            player.Wager = 10;
-
-            await Task.CompletedTask;
+            showDealButton = true;
+            await base.OnInitializedAsync();
         }
 
         private async Task NewHand()
         {
-            var validator = WagerValidator.IsValid(player.Wager);
+            dealerMessage = String.Empty;
+            hideDealerHand = true;
 
-            if (player.HasEnoughBank()
-                && validator
-                == WagerValidator.successMessage)
+            var validator = new WagerValidator(player.Wager);
+
+            dealerMessage = validator.Result;
+            
+            if (validator.Result == validator.Success)
             {
-                await SetupHand();
-                await DealCards();
-
-                await Task.Delay(500);
-
-
-
-                if (HandIsBlackJack(dealerHand))
+                if (player.HasEnoughBank())
                 {
-                    await EndHand();
-                    return;
-                }
+                    showDealButton = false;
+                    await SetupHand();
+                    await DealCards();
 
-                await WaitForActions();
+                    await Task.Delay(500);
+
+                    if (await dealer.HasBlackJack())
+                    {
+                        await EndHand();
+                        return;
+                    }
+
+                    await WaitForActions();
+                }
+                else
+                {
+                    dealerMessage = "You don't have that much to wager";
+                }
             }
         }
 
         private async Task SetupHand()
         {
-            SetupDeck();
-            SetupDealer();
-            await SetupPlayer();
-        }
-
-        private void SetupDeck()
-        {
-            deck.Cards.Clear();
-            deck = new Deck(DeckType.Shuffled);
-
-            drawPile.Clear();
-            drawPile = new Queue<Card>(deck.NoJokers());
-
+            dealer.Shuffle();
             dealerMessage = "Dealing Cards";
-        }
-
-        private void SetupDealer()
-        {
-            dealerHand.Cards.Clear();
-            dealerHand = new();
-            showDealButton = false;
-        }
-
-        private async Task SetupPlayer()
-        {
             await Task.Delay(500);
-            activeHand = await player.NewHand();
+            await player.NewHand();
             dealerMessage = String.Empty;
         }
 
-
         private async Task DealCards()
         {
-            var burn = drawPile.Dequeue();
-            await activeHand.AddCard(drawPile.Dequeue());
+            dealer.BurnCard();
+            await player.Action(
+                PlayerOptions.Hit,
+                new Card[]
+                {
+                    dealer.DrawCard()
+                });
             StateHasChanged();
             await Task.Delay(500);
 
-            await dealerHand.AddCard(drawPile.Dequeue());
+            await dealer.Hit();
             StateHasChanged();
             await Task.Delay(500);
 
-            await activeHand.AddCard(drawPile.Dequeue());
+            await player.Action(
+                PlayerOptions.Hit,
+                new Card[]
+                {
+                    dealer.DrawCard()
+                });
             StateHasChanged();
             await Task.Delay(500);
 
-            await dealerHand.AddCard(drawPile.Dequeue());
+            await dealer.Hit();
             StateHasChanged();
             await Task.Delay(500);
         }
 
-        private bool HandIsBlackJack(Hand hand) =>
-            hand.Status == HandStatus.BlackJack;
-
-        private bool HandIsBusted(Hand hand) =>
-            hand.Status == HandStatus.Busted;
-
         private async Task WaitForActions()
         {
+            if (player.ActiveHand == null
+                && player.GetNext() == null)
+            {
+                showDealButton = true;
+                if (CheckForPendingHands())
+                {
+                    await DrawDealerHand();
+                }
+                else
+                {
+                    await EndHand();
+                }
+
+                return;
+            }
+
             await CheckPlayerBlackJack();
 
-            switch (activeHand.Status)
+            switch (player.GetHandStatus())
             {
                 case HandStatus.Busted:
-                    await GetNextHand();
+                    player.Busted();
+                    await WaitForActions();
                     break;
                 case HandStatus.Pending:
-                    await GetNextHand();
+                    await player.Action(PlayerOptions.Stay);
+                    player.GetNext();
+                    await WaitForActions();
                     break;
-                case HandStatus.Paid:
-                    await GetNextHand();
+                case HandStatus.BlackJack:
+                    player.GetNext();
+                    await WaitForActions();
                     break;
                 case HandStatus.Dealt:
-                    activeHand.SetStatus(HandStatus.Active);
                     AddPlayerOptions();
+                    player.SetHandStatus(HandStatus.Active);
+                    await WaitForActions();
                     break;
                 case HandStatus.Active:
                     AddPlayerOptions();
                     break;
-            }
+                case null:
+                    if (CheckForPendingHands())
+                    {
+                        dealer.Hand.Activate();
+                        await DrawDealerHand();
+                    };
 
-            await Task.CompletedTask;
-        }
-
-        private async Task GetNextHand()
-        {
-            var next = player.GetNext();
-
-            if (next == null)
-            {
-                if ((from h in player.Hands
-                    where h.Status == HandStatus.Pending
-                    select h).Any())
-                {
-                    await PlayDealerHand();
-                }
-                else
-                {
-                    await EndPlayerHand();
-                }
+                    await EndHand();
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                activeHand = next;
-                await WaitForActions();
-            }
-            
-            await Task.CompletedTask;
         }
 
         private void AddPlayerOptions()
@@ -179,11 +167,12 @@ namespace BlackJack.Components
             playerActions.Clear();
             playerActions.Add(PlayerOptions.Hit);
             playerActions.Add(PlayerOptions.Stay);
-            if (activeHand.CanDouble())
+            if (player.ActiveHand != null &&
+                player.ActiveHand.CanDouble())
             {
                 playerActions.Add(PlayerOptions.DoubleDown);
 
-                if (activeHand.CanSplit())
+                if (player.ActiveHand.CanSplit())
                 {
                     playerActions.Add(PlayerOptions.Split);
                 }
@@ -196,83 +185,95 @@ namespace BlackJack.Components
         private async Task PlayerStays()
         {
             showPlayerActions = false;
-            activeHand.SetStatus(HandStatus.Pending);
+            await player.Action(PlayerOptions.Stay);
             StateHasChanged();
-            await GetNextHand();
+            await WaitForActions();
         }
 
         private async void PlayerHits()
         {
-            showPlayerActions = false;
-            await Task.Delay(500);
-            await activeHand.AddCard(drawPile.Dequeue());
-            StateHasChanged();
-            await WaitForActions();
+            if (player.ActiveHand != null)
+            {
+
+                showPlayerActions = false;
+                await Task.Delay(500);
+                
+                await player.Action(
+                    PlayerOptions.Hit,
+                    new Card[] 
+                    { 
+                        dealer.DrawCard()
+                    });
+                StateHasChanged();
+                await WaitForActions();
+            }
         }
 
         private async Task PlayerDoubles()
         {
-            dealerMessage = "Double Down";
-            showPlayerActions = false;
-            await Task.Delay(500);
-            await activeHand.DoubleDown(drawPile.Dequeue());
-            StateHasChanged();
-            await WaitForActions();
+            if (player.ActiveHand != null)
+            {
+                dealerMessage = "Double Down";
+                showPlayerActions = false;
+                await Task.Delay(500);
+                await player.Action(
+                    PlayerOptions.DoubleDown,
+                    new Card[]
+                    { 
+                        dealer.DrawCard() 
+                    });
+                StateHasChanged();
+                await WaitForActions();
+            }
+
         }
 
         private async Task PlayerSplits()
         {
-            showPlayerActions = false;
-            await Task.Delay(500);
-            if (player.HasEnoughBank() &&
-                activeHand.CanSplit())
+            if (player.ActiveHand != null)
             {
-                dealerMessage = "Split";
-                var newHand = new PlayerHand(player.Wager);
-                var transferCard = activeHand.Cards[1];
-                newHand.Cards.Add(transferCard);
-                activeHand.Cards.Remove(transferCard);
-                await activeHand.AddCard(drawPile.Dequeue());
-                await newHand.AddCard(drawPile.Dequeue());
-                player.Hands.Add(newHand);
+                showPlayerActions = false;
+                await Task.Delay(500);
+                if (player.HasEnoughBank() &&
+                    player.ActiveHand.CanSplit())
+                {
+                    Card[] newCards = new Card[2]
+                    {
+                        dealer.DrawCard(),
+                        dealer.DrawCard()
+                    };
+
+                    dealerMessage = "Split";
+                    await player.Action(
+                        PlayerOptions.Split,
+                        newCards);
+                
+                    StateHasChanged();
+                }
+
             }
 
-            StateHasChanged();
             await WaitForActions();
         }
 
-        private async Task PlayDealerHand()
+        private bool CheckForPendingHands()
         {
+            return ((from h in player.Hands
+                     where h.Status == HandStatus.Pending
+                     select h).Any());
+        }
+
+        private async Task DrawDealerHand()
+        {
+            hideDealerHand = false;
             dealerMessage = String.Empty;
-            dealerHand.Activate();
             dealerMessage = "Dealer's Move";
             StateHasChanged();
 
-            dealerHand.CheckForHold();
-
-            if (dealerHand.Status == HandStatus.Active)
+            if (dealer.Hand.Status == HandStatus.Active
+                || dealer.Hand.Status == HandStatus.Dealt)
             {
                 await DealerHits();
-            }
-
-            await EndHand();
-        }
-
-        private async Task DealerHits()
-        {
-            await Task.Delay(500);
-            await dealerHand.AddCard(drawPile.Dequeue());
-            StateHasChanged();
-            await PlayDealerHand();
-        }
-
-        private async Task EndPlayerHand()
-        {
-            if ((from h in player.Hands
-                 where h.Status == HandStatus.Pending
-                 select h).Any())
-            {
-                await PlayDealerHand();
             }
             else
             {
@@ -281,78 +282,118 @@ namespace BlackJack.Components
 
         }
 
+        private async Task DealerHits()
+        {
+            dealer.Hand.SetStatus(HandStatus.Active);
+            await Task.Delay(1000);
+            await dealer.Hit();
+            StateHasChanged();
+            await DrawDealerHand();
+        }
+
         private async Task EndHand()
         {
-            showPlayerActions = false;
-
-            switch (dealerHand.Status)
+            dealerMessage = string.Empty;
+            hideDealerHand = false;
+            StateHasChanged();
+            switch (dealer.Hand.Status)
             {
                 case HandStatus.BlackJack:
+                    dealer.Hand.SetMessage(HandResultMessage.dealerBlackJack);
                     foreach (var h in player.Hands)
                     {
                         if (h.Status == HandStatus.BlackJack)
-                            h.SetStatus(HandStatus.Push);
-                        else h.SetStatus(HandStatus.Lose);
+                        {
+                            h.SetResult(HandResult.Push);
+                        }
+                        else
+                        {
+                            h.SetResult(HandResult.Loss);
+                        }
                     }
+                    await Payout();
                     break;
                 case HandStatus.Busted:
+                    dealer.Hand.SetMessage(HandResultMessage.busted);
                     foreach (var h in player.Hands)
                     {
                         if (h.Status == HandStatus.Pending)
                         {
-                            h.SetStatus(HandStatus.Win);
+                            h.SetResult(HandResult.Win);
                         }
                     }
+                    await Payout();
                     break;
                 case HandStatus.Hold:
+                    var dealerValue = await dealer.Hand.Value;
                     foreach (var h in player.Hands)
                     {
+                        var handValue = await h.Value;
                         if (h.Status == HandStatus.Pending)
                         {
-                            if (h.Value > dealerHand.Value)
-                                h.SetStatus(HandStatus.Win);
-                            if (h.Value == dealerHand.Value)
-                                h.SetStatus(HandStatus.Push);
-                            if (h.Value < dealerHand.Value)
-                                h.SetStatus(HandStatus.Lose);
+                            if (handValue > dealerValue)
+                                h.SetResult(HandResult.Win);
+                            if (handValue == dealerValue)
+                                h.SetResult(HandResult.Push);
+                            if (handValue < dealerValue)
+                            {
+                                h.SetResult(HandResult.Loss);
+                                h.SetMessage(HandResultMessage.dealerWins);
+                            }
                         }
                     }
+
+                    await Payout();
+                    break;
+                default:
                     break;
             }
 
-            await PayoutWins();
+            showDealButton = true;
+            await Task.CompletedTask;
+        }
+
+        private async Task Payout()
+        {
+            foreach (var h in player.Hands)
+            {
+                switch (h.Result)
+                {
+                    case HandResult.Win:
+                        player.PayoutForWin();
+                        break;
+                    case HandResult.Push:
+                        player.PayoutForPush();
+                        break;
+                    case HandResult.BlackJack:
+                        if (h.Status != HandStatus.Paid)
+                        {
+                            player.PayoutForBlackJack();
+                        }
+                        break;
+                    case HandResult.Bust:
+                        break;
+                    case HandResult.Loss:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             await Task.CompletedTask;
         }
 
         private async Task CheckPlayerBlackJack()
         {
-            if (activeHand.Status == HandStatus.BlackJack)
+            if (player.HasBlackJack())
             {
-                var bonus = activeHand.Wager / 2;
-                player.Bank += activeHand.Wager * 2;
-                player.Bank += bonus;
-                activeHand.SetStatus(HandStatus.Paid);
+                player.ActiveHand?
+                    .SetResult(HandResult.BlackJack);
+                player.PayoutForBlackJack();
+                player.GetNext();
+                await WaitForActions();
             }
 
-            await Task.CompletedTask;
-        }
-
-        private async Task PayoutWins()
-        {
-            foreach(var hand in player.Hands)
-            {
-                switch (hand.Status)
-                {
-                    case HandStatus.Win:
-                        player.Bank += hand.Wager * 2;
-                        break;
-                    case HandStatus.Push:
-                        player.Bank += hand.Wager;
-                        break;
-                }
-            }
-
-            showDealButton = true;
             await Task.CompletedTask;
         }
     }

@@ -2,7 +2,9 @@
 {
     public enum DeckType
     {
-        Sorted,
+        Standard,
         Shuffled,
+        Sorted,
+        Packaged,
     }
 }
